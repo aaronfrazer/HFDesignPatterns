@@ -69,33 +69,33 @@ public class Main extends Application
         // Weather tower image on left
         animationImageView.setFitWidth(100);
         animationImageView.setFitHeight(100);
-        weatherTowerImageView.setFitWidth(400);
-        weatherTowerImageView.setFitHeight(400);
+        weatherTowerImageView.setFitWidth(200);
+        weatherTowerImageView.setFitHeight(200);
         // Images
         StackPane.setAlignment(animationImageView, Pos.TOP_CENTER);
         stackPane.getChildren().addAll(weatherTowerImageView, animationImageView);
         gridPane.add(stackPane, 0, 0, 1, 3);
 
         // Arrow images in center
-        upArrowImageView.setFitWidth(200);
-        upArrowImageView.setFitHeight(200);
+        upArrowImageView.setFitWidth(100);
+        upArrowImageView.setFitHeight(100);
         upArrowImageView.setRotate(-20);
         gridPane.add(upArrowImageView, 1, 0, 1, 1);
-        arrowImageView.setFitWidth(200);
-        arrowImageView.setFitHeight(200);
+        arrowImageView.setFitWidth(100);
+        arrowImageView.setFitHeight(100);
         gridPane.add(arrowImageView, 1, 1, 1, 1);
-        downArrowImageView.setFitWidth(200);
-        downArrowImageView.setFitHeight(200);
+        downArrowImageView.setFitWidth(100);
+        downArrowImageView.setFitHeight(100);
         downArrowImageView.setRotate(20);
         gridPane.add(downArrowImageView, 1, 2, 1, 1);
 
         // Observer images on right
-        currentConditionsDisplayImageView.setFitWidth(200);
-        currentConditionsDisplayImageView.setFitHeight(200);
-        statisticsDisplayImageView.setFitWidth(200);
-        statisticsDisplayImageView.setFitHeight(200);
-        forecastDisplayImageView.setFitWidth(200);
-        forecastDisplayImageView.setFitHeight(200);
+        currentConditionsDisplayImageView.setFitWidth(100);
+        currentConditionsDisplayImageView.setFitHeight(100);
+        statisticsDisplayImageView.setFitWidth(100);
+        statisticsDisplayImageView.setFitHeight(100);
+        forecastDisplayImageView.setFitWidth(100);
+        forecastDisplayImageView.setFitHeight(100);
         gridPane.add(currentConditionsDisplayImageView, 2, 0, 1, 1);
         gridPane.add(statisticsDisplayImageView, 2, 1, 1, 1);
         gridPane.add(forecastDisplayImageView, 2, 2, 1, 1);
@@ -126,7 +126,7 @@ public class Main extends Application
         gridPane.add(sCheckBox, 4, 1, 1, 1);
         gridPane.add(fCheckBox, 4, 2, 1, 1);
 
-        scene = new Scene(gridPane, 1650, 800);
+        scene = new Scene(gridPane, 1200, 400);
         window.setScene(scene);
         window.show();
 
