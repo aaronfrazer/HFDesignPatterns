@@ -7,15 +7,13 @@ import java.io.File;
 
 public class FlyRocketPowered implements FlyBehavior
 {
-    public static Image rocketImage = new Image(new File(Main.imageDir + "Rocket.png").toURI().toString());
-
     public void fly()
     {
-        Main.addBackGroundImage(rocketImage);
+        Main.addBackGroundImage(Main.rocketImage);
     }
 
     public Image getFlyingImage()
     {
-        return rocketImage;
+        return Main.rocketImage;
     }
 }

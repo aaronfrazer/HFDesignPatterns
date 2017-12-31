@@ -26,8 +26,8 @@ import strategy.quackBehaviors.Squeak;
 
 public class Main extends Application
 {
-    public static String imageDir = "res/images/";
-    public static String soundDir = "res/sounds/";
+    private static String imageDir = "res/images/";
+    private static String soundDir = "res/sounds/";
 
     private Stage window;
     private Scene scene;
@@ -37,6 +37,9 @@ public class Main extends Application
     private static ImageView imageView = new ImageView(new Image(new File(imageDir + "MallardDuck.jpg").toURI().toString()));
     public static Image waterImage = new Image(new File(imageDir + "water.gif").toURI().toString());
     private static ImageView backgroundImageView = new ImageView(waterImage);
+
+    public static Image wingImage = new Image(new File(imageDir + "MallardDuckFlying.png").toURI().toString());
+    public static Image rocketImage = new Image(new File(imageDir + "Rocket.png").toURI().toString());
 
     private MallardDuck mallardDuck = new MallardDuck();
     private RedHeadDuck redHeadDuck = new RedHeadDuck();
@@ -50,7 +53,7 @@ public class Main extends Application
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception
+    public void start(Stage primaryStage)
     {
         window = primaryStage;
         window.setTitle("Main");
@@ -120,93 +123,93 @@ public class Main extends Application
         choiceBoxModelQuack.setValue("Quack");
 
         choiceBoxMallardFly.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FlyNoWay")
+            if (newValue.equals("FlyNoWay"))
                 mallardDuck.setFlyBehavior(new FlyNoWay());
-            if (newValue == "FlyRocketPowered")
+            if (newValue.equals("FlyRocketPowered"))
                 mallardDuck.setFlyBehavior(new FlyRocketPowered());
-            if (newValue == "FlyWithWings")
+            if (newValue.equals("FlyWithWings"))
                 mallardDuck.setFlyBehavior(new FlyWithWings());
         });
         choiceBoxMallardQuack.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FakeQuack")
+            if (newValue.equals("FakeQuack"))
                 mallardDuck.setQuackBehavior(new FakeQuack());
-            if (newValue == "Quack")
+            if (newValue.equals("Quack"))
                 mallardDuck.setQuackBehavior(new Quack());
-            if (newValue == "MuteQuack")
+            if (newValue.equals("MuteQuack"))
                 mallardDuck.setQuackBehavior(new MuteQuack());
-            if (newValue == "Squeak")
+            if (newValue.equals("Squeak"))
                 mallardDuck.setQuackBehavior(new Squeak());
         });
         choiceBoxRedHeadFly.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FlyNoWay")
+            if (newValue.equals("FlyNoWay"))
                 redHeadDuck.setFlyBehavior(new FlyNoWay());
-            if (newValue == "FlyRocketPowered")
+            if (newValue.equals("FlyRocketPowered"))
                 redHeadDuck.setFlyBehavior(new FlyRocketPowered());
-            if (newValue == "FlyWithWings")
+            if (newValue.equals("FlyWithWings"))
                 redHeadDuck.setFlyBehavior(new FlyWithWings());
         });
         choiceBoxRedHeadQuack.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FakeQuack")
+            if (newValue.equals("FakeQuack"))
                 redHeadDuck.setQuackBehavior(new FakeQuack());
-            if (newValue == "Quack")
+            if (newValue.equals("Quack"))
                 redHeadDuck.setQuackBehavior(new Quack());
-            if (newValue == "MuteQuack")
+            if (newValue.equals("MuteQuack"))
                 redHeadDuck.setQuackBehavior(new MuteQuack());
-            if (newValue == "Squeak")
+            if (newValue.equals("Squeak"))
                 redHeadDuck.setQuackBehavior(new Squeak());
         });
         choiceBoxRubberFly.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FlyNoWay")
+            if (newValue.equals("FlyNoWay"))
                 rubberDuck.setFlyBehavior(new FlyNoWay());
-            if (newValue == "FlyRocketPowered")
+            if (newValue.equals("FlyRocketPowered"))
                 rubberDuck.setFlyBehavior(new FlyRocketPowered());
-            if (newValue == "FlyWithWings")
+            if (newValue.equals("FlyWithWings"))
                 rubberDuck.setFlyBehavior(new FlyWithWings());
         });
         choiceBoxRubberQuack.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FakeQuack")
+            if (newValue.equals("FakeQuack"))
                 rubberDuck.setQuackBehavior(new FakeQuack());
-            if (newValue == "Quack")
+            if (newValue.equals("Quack"))
                 rubberDuck.setQuackBehavior(new Quack());
-            if (newValue == "MuteQuack")
+            if (newValue.equals("MuteQuack"))
                 rubberDuck.setQuackBehavior(new MuteQuack());
-            if (newValue == "Squeak")
+            if (newValue.equals("Squeak"))
                 rubberDuck.setQuackBehavior(new Squeak());
         });
         choiceBoxDecoyFly.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FlyNoWay")
+            if (newValue.equals("FlyNoWay"))
                 decoyDuck.setFlyBehavior(new FlyNoWay());
-            if (newValue == "FlyRocketPowered")
+            if (newValue.equals("FlyRocketPowered"))
                 decoyDuck.setFlyBehavior(new FlyRocketPowered());
-            if (newValue == "FlyWithWings")
+            if (newValue.equals("FlyWithWings"))
                 decoyDuck.setFlyBehavior(new FlyWithWings());
         });
         choiceBoxDecoyQuack.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FakeQuack")
+            if (newValue.equals("FakeQuack"))
                 decoyDuck.setQuackBehavior(new FakeQuack());
-            if (newValue == "Quack")
+            if (newValue.equals("Quack"))
                 decoyDuck.setQuackBehavior(new Quack());
-            if (newValue == "MuteQuack")
+            if (newValue.equals("MuteQuack"))
                 decoyDuck.setQuackBehavior(new MuteQuack());
-            if (newValue == "Squeak")
+            if (newValue.equals("Squeak"))
                 decoyDuck.setQuackBehavior(new Squeak());
         });
         choiceBoxModelFly.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FlyNoWay")
+            if (newValue.equals("FlyNoWay"))
                 modelDuck.setFlyBehavior(new FlyNoWay());
-            if (newValue == "FlyRocketPowered")
+            if (newValue.equals("FlyRocketPowered"))
                 modelDuck.setFlyBehavior(new FlyRocketPowered());
-            if (newValue == "FlyWithWings")
+            if (newValue.equals("FlyWithWings"))
                 modelDuck.setFlyBehavior(new FlyWithWings());
         });
         choiceBoxModelQuack.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue == "FakeQuack")
+            if (newValue.equals("FakeQuack"))
                 modelDuck.setQuackBehavior(new FakeQuack());
-            if (newValue == "Quack")
+            if (newValue.equals("Quack"))
                 modelDuck.setQuackBehavior(new Quack());
-            if (newValue == "MuteQuack")
+            if (newValue.equals("MuteQuack"))
                 modelDuck.setQuackBehavior(new MuteQuack());
-            if (newValue == "Squeak")
+            if (newValue.equals("Squeak"))
                 modelDuck.setQuackBehavior(new Squeak());
         });
 

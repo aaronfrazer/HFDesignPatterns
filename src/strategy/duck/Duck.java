@@ -7,9 +7,8 @@ import strategy.quackBehaviors.QuackBehavior;
 
 public abstract class Duck
 {
-    // TODO: Implement flying (similar to water)
-    boolean isFlying;
-    boolean isSwimming;
+    private boolean isFlying;
+    private boolean isSwimming;
     FlyBehavior flyBehavior;
     QuackBehavior quackBehavior;
 

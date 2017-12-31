@@ -1,6 +1,7 @@
 package strategy.duck;
 
 import strategy.Main;
+import strategy.flyBehaviors.FlyNoWay;
 import strategy.flyBehaviors.FlyWithWings;
 import strategy.quackBehaviors.Quack;
 
@@ -10,8 +11,8 @@ public class MallardDuck extends Duck
 
     public MallardDuck()
     {
-        flyBehavior = new FlyWithWings();
-        quackBehavior = new Quack();
+        setFlyBehavior(new FlyWithWings());
+        setQuackBehavior(new Quack());
     }
 
     public void display()
