@@ -2,9 +2,9 @@ package decorator.beverages;
 
 public class HouseBlend extends Beverage
 {
+    private final double cost = 0.89;
+
     private String description = "House Blend Coffee";
-    private final double baseCost = 0.89;
-    private int quantity = 1;
 
     public String getDescription()
     {
@@ -13,12 +13,8 @@ public class HouseBlend extends Beverage
 
     public double getCost()
     {
-        double cost = baseCost + getSize().getCost();
+        double cost = this.cost + getSize().getCost();
         return Math.round(cost * 100.0) / 100.0;
     }
 
-    public int getQuantity()
-    {
-        return quantity;
-    }
 }

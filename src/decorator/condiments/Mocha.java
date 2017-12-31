@@ -4,10 +4,9 @@ import decorator.beverages.Beverage;
 
 public class Mocha extends CondimentDecorator
 {
-    Beverage beverage;
+    private Beverage beverage;
 
-    private final double baseCost = 0.20;
-    private int quantity = 1;
+    private final double cost = 0.20;
 
     public Mocha(Beverage beverage)
     {
@@ -21,12 +20,7 @@ public class Mocha extends CondimentDecorator
 
     public double getCost()
     {
-        double cost = baseCost + beverage.getCost();
+        double cost = this.cost + beverage.getCost();
         return Math.round(cost * 100.0) / 100.0;
-    }
-
-    public int getQuantity()
-    {
-        return quantity;
     }
 }

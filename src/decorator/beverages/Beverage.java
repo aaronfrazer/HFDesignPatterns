@@ -2,22 +2,8 @@ package decorator.beverages;
 
 public abstract class Beverage
 {
-    public enum Size {
-        TALL("Tall", 0.10),
-        GRANDE("Grande", 0.15),
-        VENTI("Venti", 0.20);
-        private String name;
-        private double cost;
-        Size(String name, double cost) { this.cost = cost; this.name = name; }
-        public double getCost() { return cost; }
-        public String getName() { return name; }
-    }
-
     private Size size;
 
-    /**
-     * A beverage has a default size of TALL.
-     */
     public Beverage()
     {
         if (getSize() == null)
@@ -27,8 +13,6 @@ public abstract class Beverage
     public abstract double getCost();
 
     public abstract String getDescription();
-
-    public abstract int getQuantity();
 
     public Size getSize()
     {

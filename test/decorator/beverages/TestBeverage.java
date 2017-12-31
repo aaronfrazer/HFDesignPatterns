@@ -1,7 +1,5 @@
 package decorator.beverages;
 
-import decorator.condiments.Mocha;
-import decorator.condiments.Whip;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -40,17 +38,6 @@ public class TestBeverage
     }
 
     @Test
-    public void testSize()
-    {
-        assertEquals(Beverage.Size.TALL.getName(), "Tall");
-        assertEquals(Beverage.Size.TALL.getCost(), 0.10, 0);
-        assertEquals(Beverage.Size.GRANDE.getName(), "Grande");
-        assertEquals(Beverage.Size.GRANDE.getCost(), 0.15, 0);
-        assertEquals(Beverage.Size.VENTI.getName(), "Venti");
-        assertEquals(Beverage.Size.VENTI.getCost(), 0.20, 0);
-    }
-
-    @Test
     public void testBeveragesWithSize()
     {
         Beverage houseBlend = new HouseBlend();
@@ -59,31 +46,31 @@ public class TestBeverage
         Beverage espresso   = new Espresso();
 
         houseBlend.setSize("GRANDE");
-        assertEquals(houseBlend.getSize(), Beverage.Size.GRANDE);
+        assertEquals(houseBlend.getSize(), Size.GRANDE);
         houseBlend.setSize("VENTI");
-        assertEquals(houseBlend.getSize(), Beverage.Size.VENTI);
+        assertEquals(houseBlend.getSize(), Size.VENTI);
         houseBlend.setSize("TALL");
-        assertEquals(houseBlend.getSize(), Beverage.Size.TALL);
+        assertEquals(houseBlend.getSize(), Size.TALL);
 
         darkRoast.setSize("GRANDE");
-        assertEquals(darkRoast.getSize(), Beverage.Size.GRANDE);
+        assertEquals(darkRoast.getSize(), Size.GRANDE);
         darkRoast.setSize("VENTI");
-        assertEquals(darkRoast.getSize(), Beverage.Size.VENTI);
+        assertEquals(darkRoast.getSize(), Size.VENTI);
         darkRoast.setSize("TALL");
-        assertEquals(darkRoast.getSize(), Beverage.Size.TALL);
+        assertEquals(darkRoast.getSize(), Size.TALL);
 
         decaf.setSize("GRANDE");
-        assertEquals(decaf.getSize(), Beverage.Size.GRANDE);
+        assertEquals(decaf.getSize(), Size.GRANDE);
         decaf.setSize("VENTI");
-        assertEquals(decaf.getSize(), Beverage.Size.VENTI);
+        assertEquals(decaf.getSize(), Size.VENTI);
         decaf.setSize("TALL");
-        assertEquals(decaf.getSize(), Beverage.Size.TALL);
+        assertEquals(decaf.getSize(), Size.TALL);
 
         espresso.setSize("GRANDE");
-        assertEquals(espresso.getSize(), Beverage.Size.GRANDE);
+        assertEquals(espresso.getSize(), Size.GRANDE);
         espresso.setSize("VENTI");
-        assertEquals(espresso.getSize(), Beverage.Size.VENTI);
+        assertEquals(espresso.getSize(), Size.VENTI);
         espresso.setSize("TALL");
-        assertEquals(espresso.getSize(), Beverage.Size.TALL);
+        assertEquals(espresso.getSize(), Size.TALL);
     }
 }

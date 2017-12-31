@@ -4,10 +4,9 @@ import decorator.beverages.Beverage;
 
 public class Soy extends CondimentDecorator
 {
-    Beverage beverage;
+    private Beverage beverage;
 
-    private final double baseCost = 0.15;
-    private int quantity = 1;
+    private final double cost = 0.15;
 
     public Soy(Beverage beverage)
     {
@@ -21,12 +20,7 @@ public class Soy extends CondimentDecorator
 
     public double getCost()
     {
-        double cost = baseCost + beverage.getCost();
+        double cost = this.cost + beverage.getCost();
         return Math.round(cost * 100.0) / 100.0;
-    }
-
-    public int getQuantity()
-    {
-        return quantity;
     }
 }

@@ -25,6 +25,17 @@ public class Main extends Application
     private ToggleGroup sizesGroup = new ToggleGroup();
     private ToggleGroup coffeesGroup = new ToggleGroup();
 
+    private Label labelSize = new Label("Sizes");
+    private RadioButton radioButtonTall = new RadioButton("Tall ($0.10)");
+    private RadioButton radioButtonGrande = new RadioButton("Grande ($0.15)");
+    private RadioButton radioButtonVenti = new RadioButton("Venti ($0.20)");
+
+    private Label labelCoffees = new Label("Coffees");
+    private RadioButton radioButtonHouseBlend = new RadioButton("House Blend ($0.89)");
+    private RadioButton radioButtonDarkRoast = new RadioButton("Dark Roast ($0.99)");
+    private RadioButton radioButtonDecaf = new RadioButton("Decaf ($1.05)");
+    private RadioButton radioButtonEspresso = new RadioButton("Espresso ($1.99)");
+
     private Label labelCondiments = new Label("Condiments");
     private CheckBox checkBoxMilk = new CheckBox("Milk ($0.10)");
     private CheckBox checkBoxMocha = new CheckBox("Mocha ($0.20)");
@@ -37,14 +48,13 @@ public class Main extends Application
     private ChoiceBox<String> choiceBoxSoy = new ChoiceBox<>();
     private ChoiceBox<String> choiceBoxWhip = new ChoiceBox<>();
 
-    private Label labelOrder = new Label("Current Order:");
-    private TextArea orderBreakdownTextArea = new TextArea();
+    private Label labelOrder = new Label("Description:");
+    private TextField orderTextField = new TextField();
 
     private Button addButton = new Button("Add to Order");
 
     private Label labelTable = new Label("Order Breakdown:");
     private TableView<Beverage> tableBeverages;
-    private TableColumn<Beverage, Integer> quantityColumn = new TableColumn<>("Quantity");
     private TableColumn<Beverage, String> descColumn = new TableColumn<>("Description");
     private TableColumn<Beverage, Double> priceColumn = new TableColumn<>("Price");
 
@@ -54,17 +64,13 @@ public class Main extends Application
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception
+    public void start(Stage primaryStage)
     {
         window = primaryStage;
         window.setTitle("Starbuzz Coffee");
         window.setOnCloseRequest(e -> closeProgram());
 
         // Sizes first
-        Label labelSize = new Label("Sizes");
-        RadioButton radioButtonTall = new RadioButton("Tall ($0.10)");
-        RadioButton radioButtonGrande = new RadioButton("Grande ($0.15)");
-        RadioButton radioButtonVenti = new RadioButton("Venti ($0.20)");
         radioButtonTall.setSelected(true);
 
         radioButtonTall.setToggleGroup(sizesGroup);
@@ -79,12 +85,6 @@ public class Main extends Application
         sizesGroup.selectedToggleProperty().addListener(e -> createBeverage());
 
         // Coffees on left
-        Label labelCoffees = new Label("Coffees");
-        RadioButton radioButtonHouseBlend = new RadioButton("House Blend ($0.89)");
-        RadioButton radioButtonDarkRoast = new RadioButton("Dark Roast ($0.99)");
-        RadioButton radioButtonDecaf = new RadioButton("Decaf ($1.05)");
-        RadioButton radioButtonEspresso = new RadioButton("Espresso ($1.99)");
-
         radioButtonHouseBlend.setToggleGroup(coffeesGroup);
         radioButtonDarkRoast.setToggleGroup(coffeesGroup);
         radioButtonDecaf.setToggleGroup(coffeesGroup);
@@ -141,7 +141,7 @@ public class Main extends Application
 
         // Order Breakdown on bottom
         gridPane.add(labelOrder, 0, 5, 4, 1);
-        gridPane.add(orderBreakdownTextArea, 0, 6, 4, 1);
+        gridPane.add(orderTextField, 0, 6, 4, 1);
 
         // Buttons on bottom
         addButton.setOnAction(e -> addBeverage());
@@ -149,10 +149,6 @@ public class Main extends Application
         gridPane.add(addButton, 0, 7, 4, 1);
 
         // Table on right
-        // Qty Column
-        quantityColumn.setMinWidth(100);
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
         // Description Column
         descColumn.setMinWidth(300);
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -163,12 +159,12 @@ public class Main extends Application
 
         tableBeverages = new TableView<>();
         tableBeverages.setItems(getBeverages());
-        tableBeverages.getColumns().addAll(quantityColumn, descColumn, priceColumn);
+        tableBeverages.getColumns().addAll(descColumn, priceColumn);
 
         gridPane.add(labelTable, 4, 0, 1, 1);
-        gridPane.add(tableBeverages, 4, 1, 1, 4);
+        gridPane.add(tableBeverages, 4, 1, 1, 6);
 
-        scene = new Scene(gridPane, 1200, 400);
+        scene = new Scene(gridPane, 1000, 200);
         window.setScene(scene);
         window.show();
     }
@@ -178,7 +174,7 @@ public class Main extends Application
      */
     private void printOrder()
     {
-        orderBreakdownTextArea.setText(beverage.getDescription() + " $" + beverage.getCost());
+        orderTextField.setText(beverage.getDescription() + " $" + beverage.getCost());
     }
 
     /**
@@ -282,10 +278,8 @@ public class Main extends Application
      */
     private void addBeverage()
     {
-        // Add beverage to observable list
-        beverages.add(beverage);
-
-        // Remove current inputs and clear text area
+        if (beverage != null)
+            beverages.add(beverage);
     }
 
     /**
