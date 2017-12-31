@@ -135,7 +135,6 @@ public class Main extends Application
 
     /**
      * Starts and runs the weather station thread.
-     * TODO: Stop this thread when the application closes
      */
     private static void runWeatherStationThread()
     {
@@ -173,12 +172,13 @@ public class Main extends Application
     }
 
     /**
-     * Closes the window of the program.
+     * Terminates thread and closes program window.
      */
     private void closeProgram()
     {
-        System.out.println("Killing program..");
-        wtr.terminate();
+        if (thread != null)
+            wtr.terminate();
+
         window.close();
     }
 }
