@@ -19,8 +19,6 @@ public class ForecastDisplay implements Observer, DisplayElement
     {
         lastPressure = currentPressure;
         currentPressure = pressure;
-
-        display();
     }
 
     public void display()
@@ -36,5 +34,15 @@ public class ForecastDisplay implements Observer, DisplayElement
         {
             Main.forecastTextArea.appendText("Watch out for cooler, rainy weather");
         }
+    }
+
+    public float getCurrentPressure()
+    {
+        return currentPressure;
+    }
+
+    public float getLastPressure()
+    {
+        return lastPressure;
     }
 }

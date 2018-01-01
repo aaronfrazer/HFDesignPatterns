@@ -19,11 +19,20 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement
     {
         this.temperature = temperature;
         this.humidity = humidity;
-        display();
     }
 
     public void display()
     {
         Main.currentConditionsTextArea.setText("Current conditions: " + temperature + "F degrees and " + humidity + "% humidity");
+    }
+
+    public float getTemperature()
+    {
+        return temperature;
+    }
+
+    public float getHumidity()
+    {
+        return humidity;
     }
 }

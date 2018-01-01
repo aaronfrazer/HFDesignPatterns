@@ -37,10 +37,11 @@ public class WeatherData implements Subject
         for (Observer observer : observers)
         {
             observer.update(temperature, humidity, pressure);
+            observer.display();
         }
     }
 
-    private void measurementsChanged()
+    protected void measurementsChanged()
     {
         Main.displayUpdateImage();
         try {
@@ -63,20 +64,19 @@ public class WeatherData implements Subject
         this.temperature = temperature;
         this.humidity = humidity;
         this.pressure = pressure;
-        measurementsChanged();
     }
 
-    private float getTemperature()
+    public float getTemperature()
     {
         return temperature;
     }
 
-    private float getHumidity()
+    public float getHumidity()
     {
         return humidity;
     }
 
-    private float getPressure()
+    public float getPressure()
     {
         return pressure;
     }

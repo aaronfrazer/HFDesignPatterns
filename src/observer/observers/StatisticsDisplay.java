@@ -23,20 +23,34 @@ public class StatisticsDisplay implements Observer, DisplayElement
         numReadings++;
 
         if (temp > maxTemp)
-        {
             maxTemp = temp;
-        }
 
         if (temp < minTemp)
-        {
             minTemp = temp;
-        }
-
-        display();
     }
 
     public void display()
     {
         Main.statisticsTextArea.setText("Avg/Max/Min temperature = " + (tempSum / numReadings) + "/" + maxTemp + "/" + minTemp);
+    }
+
+    public float getMaxTemp()
+    {
+        return maxTemp;
+    }
+
+    public float getMinTemp()
+    {
+        return minTemp;
+    }
+
+    public float getTempSum()
+    {
+        return tempSum;
+    }
+
+    public float getNumReadings()
+    {
+        return numReadings;
     }
 }

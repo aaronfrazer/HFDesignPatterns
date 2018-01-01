@@ -52,5 +52,6 @@ public class WeatherThreadRunner implements Runnable
         float pressure = rand.nextFloat() * (32f - 28f) + 28f;
 
         Main.weatherData.setMeasurements(tempurature, humidity, pressure);
+        Main.weatherData.measurementsChanged();
     }
 }
