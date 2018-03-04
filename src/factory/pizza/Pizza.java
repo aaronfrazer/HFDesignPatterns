@@ -1,15 +1,13 @@
 package factory.pizza;
 
-import factory.Main;
+import factory.MainFactory;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
-
-import static factory.Main.orderTextArea;
 
 abstract public class Pizza
 {
+    String style;
     String name;
     String dough;
     String sauce;
@@ -17,38 +15,67 @@ abstract public class Pizza
 
     public void prepare()
     {
-        // wait 5 seconds to simulate preparing a pizza
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(1000),
-                e -> orderTextArea.appendText("Preparing " + name + "...\n")
+        // wait 2 seconds to simulate preparing a pizza
+        MainFactory.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(0),
+                e -> MainFactory.playPrepareAnimation(name)
+        ));
+
+        // stop animation
+        MainFactory.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(2000),
+                e -> MainFactory.stopPrepareAnimation()
         ));
     }
 
     public void bake()
     {
-        // wait 5 seconds to simulate baking a pizza
-        Main.timeline.getKeyFrames().add(
+        // wait 2 seconds to simulate baking a pizza
+        MainFactory.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(2000),
-                e -> orderTextArea.appendText("Baking " + name + "...\n")
+                e -> MainFactory.playBakeAnimation(name)
+        ));
+
+        // stop animation
+        MainFactory.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(4000),
+                e -> MainFactory.stopBakeAnimation()
         ));
     }
 
     public void cut()
     {
-        // wait 5 seconds to simulate cutting a pizza
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(3000),
-                e -> orderTextArea.appendText("Cutting " + name + "...\n")
+        // wait 2 seconds to simulate cutting a pizza
+        MainFactory.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(4000),
+                e -> MainFactory.playCutAnimation(name)
+        ));
+
+        // stop animation
+        MainFactory.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(6000),
+                e -> MainFactory.stopCutAnimation()
         ));
     }
 
     public void box()
     {
-        // wait 5 seconds to simulate boxing a pizza
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(4000),
-                e -> orderTextArea.appendText("Boxing " + name + "...\n")
+        // wait 2 seconds to simulate boxing a pizza
+        MainFactory.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(6000),
+                e -> MainFactory.playBoxAnimation(name)
         ));
+
+        // stop animation
+        MainFactory.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(8000),
+                e -> MainFactory.stopBoxAnimation()
+        ));
+    }
+
+    public String getStyle()
+    {
+        return style;
     }
 
     public String getName()
@@ -64,6 +91,11 @@ abstract public class Pizza
     public String getSauce()
     {
         return sauce;
+    }
+
+    public void setStyle(String style)
+    {
+        this.style = style;
     }
 
     public String toString()
