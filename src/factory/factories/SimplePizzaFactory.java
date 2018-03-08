@@ -1,4 +1,6 @@
-package factory.pizza;
+package factory.factories;
+
+import factory.pizzas.*;
 
 public class SimplePizzaFactory
 {

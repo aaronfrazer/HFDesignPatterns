@@ -1,4 +1,4 @@
-package factory.pizza;
+package factory.pizzas;
 
 import factory.MainFactory;
 import javafx.animation.KeyFrame;

@@ -1,6 +1,5 @@
 package factory.pizzas;
 
-import factory.pizza.VeggiePizza;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
