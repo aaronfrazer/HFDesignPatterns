@@ -1,5 +1,7 @@
 package factory.pizzas;
 
+import factory.factories.NYPizzaIngredientFactory;
+import factory.factories.PizzaIngredientFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -9,7 +11,8 @@ public class TestVeggiePizza
     @Test
     public void testCreateVeggiePizza()
     {
-        VeggiePizza veggiePizza = new VeggiePizza();
+        PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
+        VeggiePizza veggiePizza = new VeggiePizza(ingredientFactory);
         assertEquals(veggiePizza.getName(), "Veggie Pizza");
         assertEquals(veggiePizza.getDough(), "Crust");
         assertEquals(veggiePizza.getSauce(), "Marinara Sauce");

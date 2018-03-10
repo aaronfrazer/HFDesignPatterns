@@ -1,6 +1,5 @@
 package factory;
 
-import factory.factories.SimplePizzaFactory;
 import factory.pizzaStores.ChicagoPizzaStore;
 import factory.pizzaStores.NYPizzaStore;
 import factory.pizzaStores.PizzaStore;
@@ -27,7 +26,6 @@ public class MainFactory extends Application
 
     private static String imageDir = "res/images/";
 
-    private SimplePizzaFactory factory = new SimplePizzaFactory();
     private PizzaStore pizzaStore;
 
     private static Pizza pizza;
@@ -161,10 +159,10 @@ public class MainFactory extends Application
         RadioButton pizzaStore = (RadioButton) styleGroup.getSelectedToggle();
         switch(pizzaStore.getText()) {
             case "New York":
-                this.pizzaStore = new NYPizzaStore(factory);
+                this.pizzaStore = new NYPizzaStore();
                 break;
             case "Chicago":
-                this.pizzaStore = new ChicagoPizzaStore(factory);
+                this.pizzaStore = new ChicagoPizzaStore();
                 break;
         }
 

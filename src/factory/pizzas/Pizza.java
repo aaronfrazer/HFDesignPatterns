@@ -1,32 +1,39 @@
 package factory.pizzas;
 
 import factory.MainFactory;
+import factory.ingredients.*;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
 import java.util.ArrayList;
 
 abstract public class Pizza
 {
-    String style;
+    private String style;
     String name;
-    String dough;
-    String sauce;
-    ArrayList<String> toppings = new ArrayList<>();
+    Dough dough;
+    Sauce sauce;
+    Veggies veggies[];
+    Cheese cheese;
+    Pepperoni pepperoni;
+    Clams clam;
+    private ArrayList<String> toppings = new ArrayList<>();
 
-    public void prepare()
-    {
-        // wait 2 seconds to simulate preparing a pizza
-        MainFactory.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(0),
-                e -> MainFactory.playPrepareAnimation(name)
-        ));
+//    public void prepare()
+//    {
+//        // wait 2 seconds to simulate preparing a pizza
+//        MainFactory.timeline.getKeyFrames().add(
+//                new KeyFrame(Duration.millis(0),
+//                e -> MainFactory.playPrepareAnimation(name)
+//        ));
+//
+//        // stop animation
+//        MainFactory.timeline.getKeyFrames().add(
+//                new KeyFrame(Duration.millis(2000),
+//                e -> MainFactory.stopPrepareAnimation()
+//        ));
+//    }
 
-        // stop animation
-        MainFactory.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(2000),
-                e -> MainFactory.stopPrepareAnimation()
-        ));
-    }
+    public abstract void prepare();
 
     public void bake()
     {
@@ -83,14 +90,39 @@ abstract public class Pizza
         return name;
     }
 
-    public String getDough()
+    public Dough getDough()
     {
         return dough;
     }
 
-    public String getSauce()
+    public Sauce getSauce()
     {
         return sauce;
+    }
+
+    public Veggies[] getVeggies()
+    {
+        return veggies;
+    }
+
+    public Cheese getCheese()
+    {
+        return cheese;
+    }
+
+    public Pepperoni getPepperoni()
+    {
+        return pepperoni;
+    }
+
+    public Clams getClams()
+    {
+        return clam;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
     public void setStyle(String style)

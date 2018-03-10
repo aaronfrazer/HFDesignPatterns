@@ -1,7 +1,11 @@
 package factory.pizzas;
 
+import factory.factories.NYPizzaIngredientFactory;
+import factory.factories.PizzaIngredientFactory;
+import factory.ingredients.Dough;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class TestClamPizza
@@ -9,9 +13,10 @@ public class TestClamPizza
     @Test
     public void testCreateClamPizza()
     {
-        ClamPizza clamPizza = new ClamPizza();
+        PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
+        ClamPizza clamPizza = new ClamPizza(ingredientFactory);
         assertEquals(clamPizza.getName(), "Clam Pizza");
-        assertEquals(clamPizza.getDough(), "Thin Crust");
+        assertTrue(clamPizza.getDough() instanceof Dough);
         assertEquals(clamPizza.getSauce(), "White Garlic Sauce");
         assertEquals(clamPizza.toString(),
                 "---- Clam Pizza ----\n" +

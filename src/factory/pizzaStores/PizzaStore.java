@@ -1,23 +1,15 @@
 package factory.pizzaStores;
 
-import factory.factories.SimplePizzaFactory;
 import factory.pizzas.Pizza;
 
-public class PizzaStore
+public abstract class PizzaStore
 {
-    private SimplePizzaFactory factory;
-
-    public PizzaStore(SimplePizzaFactory factory)
-    {
-        this.factory = factory;
-    }
+    protected abstract Pizza createPizza(String item);
 
     public Pizza orderPizza(String type)
     {
-        Pizza pizza;
-
-        pizza = factory.createPizza(type);
-
+        Pizza pizza = createPizza(type);
+        System.out.println("--- Making a " + pizza.getName() + " ---");
         pizza.prepare();
         pizza.bake();
         pizza.cut();
@@ -25,5 +17,4 @@ public class PizzaStore
 
         return pizza;
     }
-
 }

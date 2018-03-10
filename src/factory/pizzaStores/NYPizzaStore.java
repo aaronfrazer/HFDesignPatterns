@@ -1,44 +1,35 @@
 package factory.pizzaStores;
 
-import factory.factories.SimplePizzaFactory;
+import factory.factories.NYPizzaIngredientFactory;
+import factory.factories.PizzaIngredientFactory;
 import factory.pizzas.*;
 
 public class NYPizzaStore extends PizzaStore
 {
-    public NYPizzaStore(SimplePizzaFactory factory)
-    {
-        super(factory);
-    }
-
     protected Pizza createPizza(String item)
     {
         Pizza pizza = null;
-        SimplePizzaFactory factory;
+        PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
 
         if (item.equals("cheese"))
         {
-
-            pizza = new CheesePizza();
-//            pizza.setName("New York Style Cheese Pizza");
+            pizza = new CheesePizza(ingredientFactory);
+            pizza.setName("New York Style Cheese Pizza");
 
         } else if (item.equals("veggie"))
         {
-
-            pizza = new VeggiePizza();
-//            pizza.setName("New York Style Veggie Pizza");
+            pizza = new VeggiePizza(ingredientFactory);
+            pizza.setName("New York Style Veggie Pizza");
 
         } else if (item.equals("clam"))
         {
-
-            pizza = new ClamPizza();
-//            pizza.setName("New York Style Clam Pizza");
+            pizza = new ClamPizza(ingredientFactory);
+            pizza.setName("New York Style Clam Pizza");
 
         } else if (item.equals("pepperoni"))
         {
-
-            pizza = new PepperoniPizza();
-//            pizza.setName("New York Style Pepperoni Pizza");
-
+            pizza = new PepperoniPizza(ingredientFactory);
+            pizza.setName("New York Style Pepperoni Pizza");
         }
 
         return pizza;
