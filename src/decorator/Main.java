@@ -78,9 +78,9 @@ public class Main extends Application
         radioButtonVenti.setToggleGroup(sizesGroup);
 
         gridPane.add(labelSize, 0, 0, 1, 1);
-        gridPane.add(radioButtonTall, 0, 1,1, 1);
-        gridPane.add(radioButtonGrande, 0, 2,1, 1);
-        gridPane.add(radioButtonVenti, 0, 3,1, 1);
+        gridPane.add(radioButtonTall, 0, 1, 1, 1);
+        gridPane.add(radioButtonGrande, 0, 2, 1, 1);
+        gridPane.add(radioButtonVenti, 0, 3, 1, 1);
 
         sizesGroup.selectedToggleProperty().addListener(e -> createBeverage());
 
@@ -90,20 +90,20 @@ public class Main extends Application
         radioButtonDecaf.setToggleGroup(coffeesGroup);
         radioButtonEspresso.setToggleGroup(coffeesGroup);
 
-        gridPane.add(labelCoffees, 1, 0 ,1, 1);
-        gridPane.add(radioButtonHouseBlend, 1, 1 ,1, 1);
-        gridPane.add(radioButtonDarkRoast, 1, 2 ,1, 1);
-        gridPane.add(radioButtonDecaf, 1, 3 ,1, 1);
-        gridPane.add(radioButtonEspresso, 1, 4 ,1, 1);
+        gridPane.add(labelCoffees, 1, 0, 1, 1);
+        gridPane.add(radioButtonHouseBlend, 1, 1, 1, 1);
+        gridPane.add(radioButtonDarkRoast, 1, 2, 1, 1);
+        gridPane.add(radioButtonDecaf, 1, 3, 1, 1);
+        gridPane.add(radioButtonEspresso, 1, 4, 1, 1);
 
         coffeesGroup.selectedToggleProperty().addListener(e -> createBeverage());
 
         // Condiments in center
-        gridPane.add(labelCondiments, 2, 0 ,1, 1);
-        gridPane.add(checkBoxMilk, 2, 1,1, 1);
-        gridPane.add(checkBoxMocha, 2, 2 ,1, 1);
-        gridPane.add(checkBoxSoy, 2, 3 ,1, 1);
-        gridPane.add(checkBoxWhip, 2, 4 ,1, 1);
+        gridPane.add(labelCondiments, 2, 0, 1, 1);
+        gridPane.add(checkBoxMilk, 2, 1, 1, 1);
+        gridPane.add(checkBoxMocha, 2, 2, 1, 1);
+        gridPane.add(checkBoxSoy, 2, 3, 1, 1);
+        gridPane.add(checkBoxWhip, 2, 4, 1, 1);
 
         checkBoxMilk.selectedProperty().addListener(e -> createBeverage());
         checkBoxMocha.selectedProperty().addListener(e -> createBeverage());
@@ -133,11 +133,11 @@ public class Main extends Application
         choiceBoxSoy.getSelectionModel().selectedItemProperty().addListener(e -> createBeverage());
         choiceBoxWhip.getSelectionModel().selectedItemProperty().addListener(e -> createBeverage());
 
-        gridPane.add(labelQuantity, 3, 0 ,1, 1);
-        gridPane.add(choiceBoxMilk, 3, 1 ,1, 1);
-        gridPane.add(choiceBoxMocha, 3, 2 ,1, 1);
-        gridPane.add(choiceBoxSoy, 3, 3 ,1, 1);
-        gridPane.add(choiceBoxWhip, 3, 4 ,1, 1);
+        gridPane.add(labelQuantity, 3, 0, 1, 1);
+        gridPane.add(choiceBoxMilk, 3, 1, 1, 1);
+        gridPane.add(choiceBoxMocha, 3, 2, 1, 1);
+        gridPane.add(choiceBoxSoy, 3, 3, 1, 1);
+        gridPane.add(choiceBoxWhip, 3, 4, 1, 1);
 
         // Order Breakdown on bottom
         gridPane.add(labelOrder, 0, 5, 4, 1);
@@ -188,7 +188,8 @@ public class Main extends Application
 
         // Coffees
         RadioButton coffee = (RadioButton) coffeesGroup.getSelectedToggle();
-        switch (coffee.getText()) {
+        switch (coffee.getText())
+        {
             case "House Blend ($0.89)":
                 beverage = new HouseBlend();
                 break;
@@ -205,7 +206,8 @@ public class Main extends Application
 
         // Sizes
         RadioButton sizeSelection = (RadioButton) sizesGroup.getSelectedToggle();
-        switch ((sizeSelection.getText())) {
+        switch ((sizeSelection.getText()))
+        {
             case "Tall ($0.10)":
                 beverage.setSize("TALL");
                 break;
@@ -284,6 +286,7 @@ public class Main extends Application
 
     /**
      * Returns an observable list of beverages on the order.
+     *
      * @return beverages
      */
     private ObservableList<Beverage> getBeverages()

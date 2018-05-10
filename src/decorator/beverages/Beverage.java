@@ -21,6 +21,7 @@ public abstract class Beverage
 
     /**
      * Sets the size of this beverage.
+     *
      * @param sizeName String of new size
      */
     public void setSize(String sizeName)

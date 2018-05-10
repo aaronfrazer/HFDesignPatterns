@@ -12,7 +12,8 @@ public enum Size
 
     Size(String name, double cost)
     {
-        this.cost = cost; this.name = name;
+        this.cost = cost;
+        this.name = name;
     }
 
     public String getName()
