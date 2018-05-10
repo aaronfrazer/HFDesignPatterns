@@ -4,6 +4,7 @@ import factory.MainFactory;
 import factory.ingredients.*;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 abstract public class Pizza
@@ -40,14 +41,14 @@ abstract public class Pizza
         // wait 2 seconds to simulate baking a pizza
         MainFactory.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(2000),
-                e -> MainFactory.playBakeAnimation(name)
-        ));
+                        e -> MainFactory.playBakeAnimation(name)
+                ));
 
         // stop animation
         MainFactory.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(4000),
-                e -> MainFactory.stopBakeAnimation()
-        ));
+                        e -> MainFactory.stopBakeAnimation()
+                ));
     }
 
     public void cut()
@@ -55,14 +56,14 @@ abstract public class Pizza
         // wait 2 seconds to simulate cutting a pizza
         MainFactory.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(4000),
-                e -> MainFactory.playCutAnimation(name)
-        ));
+                        e -> MainFactory.playCutAnimation(name)
+                ));
 
         // stop animation
         MainFactory.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(6000),
-                e -> MainFactory.stopCutAnimation()
-        ));
+                        e -> MainFactory.stopCutAnimation()
+                ));
     }
 
     public void box()
@@ -70,14 +71,14 @@ abstract public class Pizza
         // wait 2 seconds to simulate boxing a pizza
         MainFactory.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(6000),
-                e -> MainFactory.playBoxAnimation(name)
-        ));
+                        e -> MainFactory.playBoxAnimation(name)
+                ));
 
         // stop animation
         MainFactory.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(8000),
-                e -> MainFactory.stopBoxAnimation()
-        ));
+                        e -> MainFactory.stopBoxAnimation()
+                ));
     }
 
     public String getStyle()

@@ -1,5 +1,6 @@
 package factory.ingredients;
 
-public interface Sauce {
-	String toString();
+public interface Sauce
+{
+    String toString();
 }

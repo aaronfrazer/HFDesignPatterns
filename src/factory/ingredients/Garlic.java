@@ -1,8 +1,10 @@
 package factory.ingredients;
 
-public class Garlic implements Veggies {
+public class Garlic implements Veggies
+{
 
-	public String toString() {
-		return "Garlic";
-	}
+    public String toString()
+    {
+        return "Garlic";
+    }
 }

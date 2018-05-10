@@ -44,16 +44,18 @@ public class WeatherData implements Subject
     protected void measurementsChanged()
     {
         Main.displayUpdateImage();
-        try {
+        try
+        {
             TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e)
+        {
             e.printStackTrace();
         }
         Main.removeUpdateImage();
         Main.weatherStationTextArea.setText(
                 "Temperature: " + getTemperature() + "\n" +
-                "Humidity: " + getHumidity() + "\n" +
-                "Pressure: " + getPressure()
+                        "Humidity: " + getHumidity() + "\n" +
+                        "Pressure: " + getPressure()
         );
 
         notifyObservers();

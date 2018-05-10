@@ -31,9 +31,11 @@ public class WeatherThreadRunner implements Runnable
 
         while (running)
         {
-            try {
+            try
+            {
                 TimeUnit.SECONDS.sleep(5);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
             setMeasurements();

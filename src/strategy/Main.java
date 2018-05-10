@@ -307,6 +307,7 @@ public class Main extends Application
 
     /**
      * Displays an image in a picture region.
+     *
      * @param image file path
      */
     public static void displayImage(String image)
@@ -317,6 +318,7 @@ public class Main extends Application
 
     /**
      * Plays a sound byte from a .wav file.
+     *
      * @param sound file path
      */
     public static void playSound(String sound)
@@ -328,6 +330,7 @@ public class Main extends Application
 
     /**
      * Displays an image in the background.
+     *
      * @param image background image
      */
     public static void addBackGroundImage(Image image)

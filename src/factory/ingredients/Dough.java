@@ -1,5 +1,6 @@
 package factory.ingredients;
 
-public interface Dough {
-	String toString();
+public interface Dough
+{
+    String toString();
 }

@@ -1,8 +1,10 @@
 package factory.ingredients;
 
-public class MozzarellaCheese implements Cheese {
+public class MozzarellaCheese implements Cheese
+{
 
-	public String toString() {
-		return "Shredded Mozzarella";
-	}
+    public String toString()
+    {
+        return "Shredded Mozzarella";
+    }
 }

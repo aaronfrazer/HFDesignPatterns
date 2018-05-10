@@ -118,18 +118,18 @@ public class MainFactory extends Application
         textPepperoniDescription.setWrappingWidth(200);
 
         gridPane.add(labelType, 0, 0, 1, 1);
-        gridPane.add(radioButtonChicago, 0, 1,1, 1);
-        gridPane.add(radioButtonNY, 0, 2,1, 1);
+        gridPane.add(radioButtonChicago, 0, 1, 1, 1);
+        gridPane.add(radioButtonNY, 0, 2, 1, 1);
 
         gridPane.add(labelPizzaMenu, 0, 3, 1, 1);
 
-        gridPane.add(radioButtonCheese, 0, 4,1, 1);
+        gridPane.add(radioButtonCheese, 0, 4, 1, 1);
         gridPane.add(textCheeseDescription, 0, 5, 1, 1);
-        gridPane.add(radioButtonVeggie, 0, 6,1, 1);
+        gridPane.add(radioButtonVeggie, 0, 6, 1, 1);
         gridPane.add(textVeggieDescription, 0, 7, 1, 1);
-        gridPane.add(radioButtonClam, 0, 8,1, 1);
+        gridPane.add(radioButtonClam, 0, 8, 1, 1);
         gridPane.add(textClamDescription, 0, 9, 1, 1);
-        gridPane.add(radioButtonPepperoni, 0, 10,1, 1);
+        gridPane.add(radioButtonPepperoni, 0, 10, 1, 1);
         gridPane.add(textPepperoniDescription, 0, 11, 1, 1);
 
         gridPane.add(orderButton, 0, 12, 1, 1);
@@ -139,10 +139,10 @@ public class MainFactory extends Application
         gridPane.add(pizzaCutImageView, 2, 13, 1, 1);
         gridPane.add(pizzaBoxImageView, 3, 13, 1, 1);
 
-        gridPane.add(pizzaPrepareAmount, 0, 14,1, 1);
-        gridPane.add(pizzaBakeAmount, 1, 14,1, 1);
-        gridPane.add(pizzaCutAmount, 2, 14,1, 1);
-        gridPane.add(pizzaBoxAmount, 3, 14,1, 1);
+        gridPane.add(pizzaPrepareAmount, 0, 14, 1, 1);
+        gridPane.add(pizzaBakeAmount, 1, 14, 1, 1);
+        gridPane.add(pizzaCutAmount, 2, 14, 1, 1);
+        gridPane.add(pizzaBoxAmount, 3, 14, 1, 1);
 
         orderButton.setOnAction(e -> orderPizza());
 
@@ -157,7 +157,8 @@ public class MainFactory extends Application
     private void orderPizza()
     {
         RadioButton pizzaStore = (RadioButton) styleGroup.getSelectedToggle();
-        switch(pizzaStore.getText()) {
+        switch (pizzaStore.getText())
+        {
             case "New York":
                 this.pizzaStore = new NYPizzaStore();
                 break;
@@ -167,7 +168,8 @@ public class MainFactory extends Application
         }
 
         RadioButton pizzaType = (RadioButton) typeGroup.getSelectedToggle();
-        switch (pizzaType.getText()) {
+        switch (pizzaType.getText())
+        {
             case "Cheese":
                 pizza = this.pizzaStore.orderPizza("cheese");
                 break;
@@ -186,8 +188,8 @@ public class MainFactory extends Application
 
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(8000),
-                e -> printOrder()
-        ));
+                        e -> printOrder()
+                ));
 
         timeline.play();
     }

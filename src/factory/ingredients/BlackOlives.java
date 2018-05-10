@@ -1,8 +1,10 @@
 package factory.ingredients;
 
-public class BlackOlives implements Veggies {
+public class BlackOlives implements Veggies
+{
 
-	public String toString() {
-		return "Black Olives";
-	}
+    public String toString()
+    {
+        return "Black Olives";
+    }
 }

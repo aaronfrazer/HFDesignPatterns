@@ -1,5 +1,6 @@
 package factory.ingredients;
 
-public interface Veggies {
-	String toString();
+public interface Veggies
+{
+    String toString();
 }

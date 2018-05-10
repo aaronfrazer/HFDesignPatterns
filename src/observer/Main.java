@@ -118,9 +118,9 @@ public class Main extends Application
         sCheckBox.setSelected(true);
         fCheckBox.setSelected(true);
 
-        ccCheckBox.selectedProperty().addListener( (v, oldValue, newValue) -> manageObserver(newValue, currentDisplay) );
-        sCheckBox.selectedProperty().addListener( (v, oldValue, newValue) -> manageObserver(newValue, statisticsDisplay) );
-        fCheckBox.selectedProperty().addListener( (v, oldValue, newValue) -> manageObserver(newValue, forecastDisplay) );
+        ccCheckBox.selectedProperty().addListener((v, oldValue, newValue) -> manageObserver(newValue, currentDisplay));
+        sCheckBox.selectedProperty().addListener((v, oldValue, newValue) -> manageObserver(newValue, statisticsDisplay));
+        fCheckBox.selectedProperty().addListener((v, oldValue, newValue) -> manageObserver(newValue, forecastDisplay));
 
         gridPane.add(ccCheckBox, 4, 0, 1, 1);
         gridPane.add(sCheckBox, 4, 1, 1, 1);
@@ -161,6 +161,7 @@ public class Main extends Application
 
     /**
      * Manages an observer by registering/removing them from observers.
+     *
      * @param register true if this observer should be registered, false if should be removed
      */
     private static void manageObserver(boolean register, Observer observer)
