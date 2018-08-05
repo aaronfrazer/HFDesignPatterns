@@ -1,6 +1,6 @@
 package factory.pizzas;
 
-import factory.MainFactory;
+import factory.Main;
 import factory.ingredients.*;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
@@ -22,15 +22,15 @@ abstract public class Pizza
 //    public void prepare()
 //    {
 //        // wait 2 seconds to simulate preparing a pizza
-//        MainFactory.timeline.getKeyFrames().add(
+//        Main.fillTimeline.getKeyFrames().add(
 //                new KeyFrame(Duration.millis(0),
-//                e -> MainFactory.playPrepareAnimation(name)
+//                e -> Main.playFillAnimation(name)
 //        ));
 //
 //        // stop animation
-//        MainFactory.timeline.getKeyFrames().add(
+//        Main.fillTimeline.getKeyFrames().add(
 //                new KeyFrame(Duration.millis(2000),
-//                e -> MainFactory.stopPrepareAnimation()
+//                e -> Main.stopFillAnimation()
 //        ));
 //    }
 
@@ -39,45 +39,45 @@ abstract public class Pizza
     public void bake()
     {
         // wait 2 seconds to simulate baking a pizza
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(2000),
-                        e -> MainFactory.playBakeAnimation(name)
+                        e -> Main.playBakeAnimation(name)
                 ));
 
         // stop animation
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(4000),
-                        e -> MainFactory.stopBakeAnimation()
+                        e -> Main.stopBakeAnimation()
                 ));
     }
 
     public void cut()
     {
         // wait 2 seconds to simulate cutting a pizza
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(4000),
-                        e -> MainFactory.playCutAnimation(name)
+                        e -> Main.playCutAnimation(name)
                 ));
 
         // stop animation
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(6000),
-                        e -> MainFactory.stopCutAnimation()
+                        e -> Main.stopCutAnimation()
                 ));
     }
 
     public void box()
     {
         // wait 2 seconds to simulate boxing a pizza
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(6000),
-                        e -> MainFactory.playBoxAnimation(name)
+                        e -> Main.playBoxAnimation(name)
                 ));
 
         // stop animation
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(8000),
-                        e -> MainFactory.stopBoxAnimation()
+                        e -> Main.stopBoxAnimation()
                 ));
     }
 

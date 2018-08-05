@@ -18,7 +18,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 
-public class MainFactory extends Application
+public class Main extends Application
 {
     private static int numPizzasBeingPrepared = 0, numPizzasBeingBaked = 0, numPizzasBeingCut = 0, numPizzasBeingBoxed = 0;
 
@@ -228,60 +228,60 @@ public class MainFactory extends Application
     {
         System.out.println("Preparing " + name + "...");
         pizzaPrepareImageView.setVisible(true);
-        MainFactory.numPizzasBeingPrepared++;
-        pizzaPrepareAmount.setText("x" + MainFactory.numPizzasBeingPrepared);
+        Main.numPizzasBeingPrepared++;
+        pizzaPrepareAmount.setText("x" + Main.numPizzasBeingPrepared);
     }
 
     public static void stopPrepareAnimation()
     {
         pizzaPrepareImageView.setVisible(false);
-        MainFactory.numPizzasBeingPrepared--;
-        pizzaPrepareAmount.setText("x" + MainFactory.numPizzasBeingPrepared);
+        Main.numPizzasBeingPrepared--;
+        pizzaPrepareAmount.setText("x" + Main.numPizzasBeingPrepared);
     }
 
     public static void playBakeAnimation(String name)
     {
         System.out.println("Baking " + name + "...");
         pizzaBakeImageView.setVisible(true);
-        MainFactory.numPizzasBeingBaked++;
-        pizzaBakeAmount.setText("x" + MainFactory.numPizzasBeingBaked);
+        Main.numPizzasBeingBaked++;
+        pizzaBakeAmount.setText("x" + Main.numPizzasBeingBaked);
     }
 
     public static void stopBakeAnimation()
     {
         pizzaBakeImageView.setVisible(false);
-        MainFactory.numPizzasBeingBaked--;
-        pizzaBakeAmount.setText("x" + MainFactory.numPizzasBeingBaked);
+        Main.numPizzasBeingBaked--;
+        pizzaBakeAmount.setText("x" + Main.numPizzasBeingBaked);
     }
 
     public static void playCutAnimation(String name)
     {
         System.out.println("Cutting " + name + "...");
         pizzaCutImageView.setVisible(true);
-        MainFactory.numPizzasBeingCut++;
-        pizzaCutAmount.setText("x" + MainFactory.numPizzasBeingCut);
+        Main.numPizzasBeingCut++;
+        pizzaCutAmount.setText("x" + Main.numPizzasBeingCut);
     }
 
     public static void stopCutAnimation()
     {
         pizzaCutImageView.setVisible(false);
-        MainFactory.numPizzasBeingCut--;
-        pizzaCutAmount.setText("x" + MainFactory.numPizzasBeingCut);
+        Main.numPizzasBeingCut--;
+        pizzaCutAmount.setText("x" + Main.numPizzasBeingCut);
     }
 
     public static void playBoxAnimation(String name)
     {
         System.out.println("Boxing " + name + "...");
         pizzaBoxImageView.setVisible(true);
-        MainFactory.numPizzasBeingBoxed++;
-        pizzaBoxAmount.setText("x" + MainFactory.numPizzasBeingBoxed);
+        Main.numPizzasBeingBoxed++;
+        pizzaBoxAmount.setText("x" + Main.numPizzasBeingBoxed);
     }
 
     public static void stopBoxAnimation()
     {
         pizzaBoxImageView.setVisible(false);
-        MainFactory.numPizzasBeingBoxed--;
-        pizzaBoxAmount.setText("x" + MainFactory.numPizzasBeingBoxed);
+        Main.numPizzasBeingBoxed--;
+        pizzaBoxAmount.setText("x" + Main.numPizzasBeingBoxed);
     }
 
     /**

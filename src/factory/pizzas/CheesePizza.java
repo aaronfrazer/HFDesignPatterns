@@ -1,6 +1,6 @@
 package factory.pizzas;
 
-import factory.MainFactory;
+import factory.Main;
 import factory.factories.PizzaIngredientFactory;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
@@ -17,14 +17,14 @@ public class CheesePizza extends Pizza
     public void prepare()
     {
         // wait 2 seconds to simulate baking a pizza
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(0),
-                        e -> MainFactory.playPrepareAnimation(name)
+                        e -> Main.playPrepareAnimation(name)
                 ));
         // stop animation
-        MainFactory.timeline.getKeyFrames().add(
+        Main.timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(2000),
-                        e -> MainFactory.stopPrepareAnimation()
+                        e -> Main.stopPrepareAnimation()
                 ));
 
         dough = ingredientFactory.createDough();
