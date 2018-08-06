@@ -18,21 +18,6 @@ import singleton.chocolate.ChocolateBoiler;
 
 import java.io.File;
 
-/**
- * TODO: test all possible combinations with these 3 functions:
- * 1. Fill
- * 2. Boil
- * 3. Drain
- *
- * Fill, Boil, Drain -> works ok
- * Fill, Drain, Boil -> works, but will not result in a complete chocolate
- * Fill, Fill -> Error: already chocolate in tank
- * Boil, Fill, Drain -> Error: no chocolate in tank to boil
- * Boil, Drain, Fill -> Error: No chocolate in tank to boil
- * Drain, Fill, Boil -> Error: No chocolate in tank to drain
- * Drain, Boil, Fill -> Error: No chocolate in tank to drain
- *
- */
 public class Main extends Application
 {
     private static String imageDir = "res/images/";
