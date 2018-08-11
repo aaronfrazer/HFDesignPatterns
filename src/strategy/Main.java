@@ -26,8 +26,8 @@ import strategy.quackBehaviors.Squeak;
 
 public class Main extends Application
 {
-    private static String imageDir = "res/images/";
-    private static String soundDir = "res/sounds/";
+    private static String imageDir = "res/images/strategy/";
+    private static String soundDir = "res/sounds/strategy/";
 
     private Stage window;
     private Scene scene;

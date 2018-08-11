@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="HFDesignPatterns" options="--add-modules=javafx.graphics,javafx.controls,javafx.base" />
+      <module name="HFDesignPatterns" options="--add-modules=javafx.graphics,javafx.controls,javafx.base,javafx.media" />
     </option>
   </component>
 </project>

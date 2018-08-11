@@ -30,7 +30,7 @@ public class Main extends Application
     private static Thread thread;
     private static WeatherThreadRunner wtr;
 
-    private static String imageDir = "res/images/";
+    private static String imageDir = "res/images/observer/";
 
     private Stage window;
     private Scene scene;

@@ -14,6 +14,8 @@ public class CheesePizza extends Pizza
         this.ingredientFactory = ingredientFactory;
     }
 
+    // TODO: Decouple JavaFX method from Pizza classes
+    // Put JavaFX methods in Main method (similar to singleton Main)
     public void prepare()
     {
         // wait 2 seconds to simulate baking a pizza

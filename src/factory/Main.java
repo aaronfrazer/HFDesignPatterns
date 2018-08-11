@@ -24,7 +24,7 @@ public class Main extends Application
 
     public static final Timeline timeline = new Timeline();
 
-    private static String imageDir = "res/images/";
+    private static String imageDir = "res/images/factory/";
 
     private PizzaStore pizzaStore;
 

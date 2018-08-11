@@ -1,27 +1,17 @@
 package factory.pizzaStores;
 
-import factory.factories.NYPizzaIngredientFactory;
-import factory.factories.PizzaIngredientFactory;
-import factory.pizzas.CheesePizza;
+import factory.pizzas.Pizza;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestChicagoPizzaStore
 {
     @Test
-    public void testCreateNYPizzaIngredientFactory()
+    public void testCreatePizza()
     {
-        PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
-        CheesePizza cheesePizza = new CheesePizza(ingredientFactory);
-        assertEquals(cheesePizza.getName(), "Cheese Pizza");
-        assertEquals(cheesePizza.getDough(), "Regular Crust");
-        assertEquals(cheesePizza.getSauce(), "Marinara Pizza Sauce");
-        assertEquals(cheesePizza.toString(),
-                "---- Cheese Pizza ----\n" +
-                "Regular Crust\n" +
-                "Marinara Pizza Sauce\n" +
-                "Fresh Mozzarella\n" +
-                "Parmesan\n");
+        ChicagoPizzaStore chicagoPizzaStore = new ChicagoPizzaStore();
+
+        assertTrue(chicagoPizzaStore.createPizza("cheese") instanceof Pizza);
     }
 }

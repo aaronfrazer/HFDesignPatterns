@@ -13,6 +13,10 @@ public class TestCheesePizza
     {
         PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
         CheesePizza cheesePizza = new CheesePizza(ingredientFactory);
+
+        cheesePizza.setName("Cheese Pizza");
+        cheesePizza.prepare();
+
         assertEquals(cheesePizza.getName(), "Cheese Pizza");
         assertEquals(cheesePizza.getDough(), "Regular Crust");
         assertEquals(cheesePizza.getSauce(), "Marinara Pizza Sauce");
