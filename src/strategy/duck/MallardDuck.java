@@ -1,7 +1,6 @@
 package strategy.duck;
 
 import strategy.Main;
-import strategy.flyBehaviors.FlyNoWay;
 import strategy.flyBehaviors.FlyWithWings;
 import strategy.quackBehaviors.Quack;
 

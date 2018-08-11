@@ -8,7 +8,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -22,7 +25,7 @@ public class Main extends Application
 {
     private static int numPizzasBeingPrepared = 0, numPizzasBeingBaked = 0, numPizzasBeingCut = 0, numPizzasBeingBoxed = 0;
 
-    public static final Timeline timeline = new Timeline();
+    private static final Timeline timeline = new Timeline();
 
     private static String imageDir = "res/images/factory/";
 
@@ -149,6 +152,59 @@ public class Main extends Application
         scene = new Scene(gridPane, 1000, 600);
         window.setScene(scene);
         window.show();
+
+        // Initialize prepareTimeline: wait 2 seconds to simulate baking a pizza
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(0),
+                        e -> Main.playPrepareAnimation()
+                ));
+        // stop animation
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(2000),
+                        e -> Main.stopPrepareAnimation()
+                ));
+
+        // Initialize bakeTimeline: wait 2 seconds to simulate baking a pizza
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(2000),
+                        e -> Main.playBakeAnimation()
+                ));
+
+        // stop animation
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(4000),
+                        e -> Main.stopBakeAnimation()
+                ));
+
+        // Initialize cutTimeline: wait 2 seconds to simulate cutting a pizza
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(4000),
+                        e -> Main.playCutAnimation()
+                ));
+
+        // stop animation
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(6000),
+                        e -> Main.stopCutAnimation()
+                ));
+
+        // Initialize boxTimeline: wait 2 seconds to simulate boxing a pizza
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(6000),
+                        e -> Main.playBoxAnimation()
+                ));
+
+        // stop animation
+        Main.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(8000),
+                        e -> Main.stopBoxAnimation()
+                ));
+
+        // Initialize orderPizzaTimeline
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(8000),
+                        e -> printOrder()
+                ));
     }
 
     /**
@@ -186,11 +242,6 @@ public class Main extends Application
 
         pizza.setStyle(pizzaStore.getText());
 
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(8000),
-                        e -> printOrder()
-                ));
-
         timeline.play();
     }
 
@@ -224,60 +275,60 @@ public class Main extends Application
         textPepperoniDescription.setText("Marinara Sauce, Reggiano, Mushrooms, Onions, Red Peppers, Pepperoni");
     }
 
-    public static void playPrepareAnimation(String name)
+    private static void playPrepareAnimation()
     {
-        System.out.println("Preparing " + name + "...");
+        System.out.println("Preparing Pizza...");
         pizzaPrepareImageView.setVisible(true);
         Main.numPizzasBeingPrepared++;
         pizzaPrepareAmount.setText("x" + Main.numPizzasBeingPrepared);
     }
 
-    public static void stopPrepareAnimation()
+    private static void stopPrepareAnimation()
     {
         pizzaPrepareImageView.setVisible(false);
         Main.numPizzasBeingPrepared--;
         pizzaPrepareAmount.setText("x" + Main.numPizzasBeingPrepared);
     }
 
-    public static void playBakeAnimation(String name)
+    private static void playBakeAnimation()
     {
-        System.out.println("Baking " + name + "...");
+        System.out.println("Baking Pizza...");
         pizzaBakeImageView.setVisible(true);
         Main.numPizzasBeingBaked++;
         pizzaBakeAmount.setText("x" + Main.numPizzasBeingBaked);
     }
 
-    public static void stopBakeAnimation()
+    private static void stopBakeAnimation()
     {
         pizzaBakeImageView.setVisible(false);
         Main.numPizzasBeingBaked--;
         pizzaBakeAmount.setText("x" + Main.numPizzasBeingBaked);
     }
 
-    public static void playCutAnimation(String name)
+    private static void playCutAnimation()
     {
-        System.out.println("Cutting " + name + "...");
+        System.out.println("Cutting Pizza...");
         pizzaCutImageView.setVisible(true);
         Main.numPizzasBeingCut++;
         pizzaCutAmount.setText("x" + Main.numPizzasBeingCut);
     }
 
-    public static void stopCutAnimation()
+    private static void stopCutAnimation()
     {
         pizzaCutImageView.setVisible(false);
         Main.numPizzasBeingCut--;
         pizzaCutAmount.setText("x" + Main.numPizzasBeingCut);
     }
 
-    public static void playBoxAnimation(String name)
+    private static void playBoxAnimation()
     {
-        System.out.println("Boxing " + name + "...");
+        System.out.println("Boxing Pizza...");
         pizzaBoxImageView.setVisible(true);
         Main.numPizzasBeingBoxed++;
         pizzaBoxAmount.setText("x" + Main.numPizzasBeingBoxed);
     }
 
-    public static void stopBoxAnimation()
+    private static void stopBoxAnimation()
     {
         pizzaBoxImageView.setVisible(false);
         Main.numPizzasBeingBoxed--;

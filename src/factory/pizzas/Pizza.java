@@ -1,9 +1,6 @@
 package factory.pizzas;
 
-import factory.Main;
 import factory.ingredients.*;
-import javafx.animation.KeyFrame;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -38,47 +35,17 @@ abstract public class Pizza
 
     public void bake()
     {
-        // wait 2 seconds to simulate baking a pizza
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(2000),
-                        e -> Main.playBakeAnimation(name)
-                ));
 
-        // stop animation
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(4000),
-                        e -> Main.stopBakeAnimation()
-                ));
     }
 
     public void cut()
     {
-        // wait 2 seconds to simulate cutting a pizza
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(4000),
-                        e -> Main.playCutAnimation(name)
-                ));
 
-        // stop animation
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(6000),
-                        e -> Main.stopCutAnimation()
-                ));
     }
 
     public void box()
     {
-        // wait 2 seconds to simulate boxing a pizza
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(6000),
-                        e -> Main.playBoxAnimation(name)
-                ));
 
-        // stop animation
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(8000),
-                        e -> Main.stopBoxAnimation()
-                ));
     }
 
     public String getStyle()

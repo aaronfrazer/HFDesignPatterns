@@ -1,6 +1,5 @@
 package observer.observers;
 
-import observer.observers.CurrentConditionsDisplay;
 import observer.subject.WeatherData;
 import org.junit.Test;
 

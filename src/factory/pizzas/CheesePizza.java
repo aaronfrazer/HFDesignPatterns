@@ -1,9 +1,6 @@
 package factory.pizzas;
 
-import factory.Main;
 import factory.factories.PizzaIngredientFactory;
-import javafx.animation.KeyFrame;
-import javafx.util.Duration;
 
 public class CheesePizza extends Pizza
 {
@@ -14,21 +11,8 @@ public class CheesePizza extends Pizza
         this.ingredientFactory = ingredientFactory;
     }
 
-    // TODO: Decouple JavaFX method from Pizza classes
-    // Put JavaFX methods in Main method (similar to singleton Main)
     public void prepare()
     {
-        // wait 2 seconds to simulate baking a pizza
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(0),
-                        e -> Main.playPrepareAnimation(name)
-                ));
-        // stop animation
-        Main.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(2000),
-                        e -> Main.stopPrepareAnimation()
-                ));
-
         dough = ingredientFactory.createDough();
         sauce = ingredientFactory.createSauce();
         cheese = ingredientFactory.createCheese();

@@ -1,6 +1,7 @@
 package decorator.condiments;
 
-import decorator.beverages.*;
+import decorator.beverages.Beverage;
+import decorator.beverages.HouseBlend;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

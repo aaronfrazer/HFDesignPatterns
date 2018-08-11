@@ -1,7 +1,5 @@
 package strategy;
 
-import java.io.File;
-
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,11 +8,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
 import strategy.duck.*;
 import strategy.flyBehaviors.FlyNoWay;
 import strategy.flyBehaviors.FlyRocketPowered;
@@ -23,6 +21,8 @@ import strategy.quackBehaviors.FakeQuack;
 import strategy.quackBehaviors.MuteQuack;
 import strategy.quackBehaviors.Quack;
 import strategy.quackBehaviors.Squeak;
+
+import java.io.File;
 
 public class Main extends Application
 {

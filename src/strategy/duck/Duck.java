@@ -2,7 +2,6 @@ package strategy.duck;
 
 import strategy.Main;
 import strategy.flyBehaviors.FlyBehavior;
-import strategy.flyBehaviors.FlyRocketPowered;
 import strategy.quackBehaviors.QuackBehavior;
 
 public abstract class Duck

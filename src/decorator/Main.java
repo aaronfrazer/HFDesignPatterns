@@ -1,13 +1,15 @@
 package decorator;
 
 import decorator.beverages.*;
-import decorator.condiments.*;
+import decorator.condiments.Milk;
+import decorator.condiments.Mocha;
+import decorator.condiments.Soy;
+import decorator.condiments.Whip;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;

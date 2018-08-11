@@ -1,7 +1,6 @@
 package observer.subject;
 
 import observer.observers.CurrentConditionsDisplay;
-import observer.subject.WeatherData;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

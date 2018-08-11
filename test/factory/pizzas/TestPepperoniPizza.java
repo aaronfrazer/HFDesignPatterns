@@ -1,6 +1,6 @@
 package factory.pizzas;
 
-import factory.factories.NYPizzaIngredientFactory;
+import factory.factories.ChicagoPizzaIngredientFactory;
 import factory.factories.PizzaIngredientFactory;
 import org.junit.Test;
 
@@ -11,17 +11,18 @@ public class TestPepperoniPizza
     @Test
     public void testCreatePepperoniPizza()
     {
-        PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
+        PizzaIngredientFactory ingredientFactory = new ChicagoPizzaIngredientFactory();
         PepperoniPizza pepperoniPizza = new PepperoniPizza(ingredientFactory);
+
+        pepperoniPizza.setName("Pepperoni Pizza");
+        pepperoniPizza.prepare();
+
         assertEquals(pepperoniPizza.getName(), "Pepperoni Pizza");
-        assertEquals(pepperoniPizza.getDough(), "Crust");
-        assertEquals(pepperoniPizza.getSauce(), "Marinara Sauce");
+        assertEquals(pepperoniPizza.getDough().toString(), "ThickCrust style extra thick crust dough");
+        assertEquals(pepperoniPizza.getSauce().toString(), "Tomato sauce with plum tomatoes");
         assertEquals(pepperoniPizza.toString(),
                 "---- Pepperoni Pizza ----\n" +
-                "Crust\n" +
-                "Marinara Sauce\n" +
-                "Sliced Pepperoni\n" +
-                "Sliced Onion\n" +
-                "Grated Parmesan Cheese\n");
+                        "ThickCrust style extra thick crust dough\n" +
+                        "Tomato sauce with plum tomatoes\n");
     }
 }
