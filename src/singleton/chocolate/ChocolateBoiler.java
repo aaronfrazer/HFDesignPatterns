@@ -29,7 +29,16 @@ public class ChocolateBoiler
     {
         if (isEmpty())
             empty = false;
-            boiled = false;
+        boiled = false;
+    }
+
+    /**
+     * Boils milk/chocolate mixture.
+     */
+    public void boil()
+    {
+        if (!isEmpty() && !isBoiled())
+            boiled = true;
     }
 
     /**
@@ -48,15 +57,6 @@ public class ChocolateBoiler
         }
     }
 
-    /**
-     * Boils milk/chocolate mixture.
-     */
-    public void boil()
-    {
-        if (!isEmpty() && !isBoiled())
-            boiled = true;
-    }
-
     public boolean isEmpty()
     {
         return empty;
@@ -70,10 +70,5 @@ public class ChocolateBoiler
     public int getNumChocolateBoiled()
     {
         return numChocolateBoiled;
-    }
-
-    public void addNumChocolateBoiled()
-    {
-        numChocolateBoiled++;
     }
 }

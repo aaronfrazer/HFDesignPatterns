@@ -20,27 +20,23 @@ import java.io.File;
 
 public class Main extends Application
 {
-    private static String imageDir = "res/images/";
+    private static String imageDir = "res/images/singleton/";
 
     private static Image chocolateBoilerEmptyImage = new Image(new File(imageDir + "ChocolateBoilerEmpty.png").toURI().toString());
-    private static Image chocolateBoilerFillAnimationImage = new Image(new File(imageDir + "ChocolateBoilerFillAnimation.gif").toURI().toString());
-    private static Image chocolateBoilerDrainAnimationImage = new Image(new File(imageDir + "ChocolateBoilerDrainAnimation.gif").toURI().toString());
-    private static Image chocolateBoilerFullImage = new Image(new File(imageDir + "ChocolateBoilerFull.png").toURI().toString());
-    private static Image chocolateBoilerBoiledImage = new Image(new File(imageDir + "ChocolateBoilerBoiled.png").toURI().toString());
+    private static Image chocolateUnboiledFillAnimationImage = new Image(new File(imageDir + "ChocolateUnboiledFillAnimation.gif").toURI().toString());
+    private static Image chocolateBoiledDrainAnimationImage = new Image(new File(imageDir + "ChocolateBoiledDrainAnimation.gif").toURI().toString());
+    private static Image chocolateUnboiledDrainAnimationImage = new Image(new File(imageDir + "ChocolateUnboiledDrainAnimation.gif").toURI().toString());
+    private static Image chocolateUnboiledFullImage = new Image(new File(imageDir + "ChocolateUnboiledFull.png").toURI().toString());
+    private static Image chocolateBoiledFullImage = new Image(new File(imageDir + "ChocolateBoiledFull.png").toURI().toString());
     private static ImageView chocolateBoilerImageView = new ImageView(chocolateBoilerEmptyImage);
 
     private static Image boilImage = new Image(new File(imageDir + "spark.gif").toURI().toString());
     private static ImageView boilImageView = new ImageView(boilImage);
 
-    private ChocolateBoiler boiler = ChocolateBoiler.getInstance();
-
     private Stage window;
     private Scene scene;
     private GridPane gridPane = new GridPane();
     private StackPane stackPane = new StackPane();
-
-    private Label labelPercentage = new Label("Percent Filled: ");
-    private Text textPercentage = new Text("0%");
 
     private Label labelComplete = new Label("Number of Chocolate Gallons: ");
     private static Text textComplete = new Text("0");
@@ -49,9 +45,9 @@ public class Main extends Application
     private Button boilButton = new Button("Boil");
     private Button drainButton = new Button("Drain");
 
-    public static final Timeline fillTimeline = new Timeline();
-    public static final Timeline boilTimeline = new Timeline();
-    public static final Timeline drainTimeline = new Timeline();
+    private static final Timeline fillTimeline = new Timeline();
+    private static final Timeline boilTimeline = new Timeline();
+    private static final Timeline drainTimeline = new Timeline();
 
     public static void main(String[] args)
     {
@@ -80,10 +76,6 @@ public class Main extends Application
         stackPane.getChildren().addAll(chocolateBoilerImageView, boilImageView);
         gridPane.add(stackPane, 0, 0, 2, 3);
 
-        // Percentage filled label
-        gridPane.add(labelPercentage, 0, 3, 1, 1);
-        gridPane.add(textPercentage, 1, 3, 1, 1);
-
         // Buttons
         gridPane.add(fillButton, 2, 0, 1, 1);
         gridPane.add(boilButton, 2, 1, 1, 1);
@@ -94,9 +86,10 @@ public class Main extends Application
         boilButton.setOnAction(e -> boilTimeline.play());
         drainButton.setOnAction(e -> drainTimeline.play());
 
-        // # of tanks complete label
-        gridPane.add(labelComplete, 2, 3, 1, 1);
-        gridPane.add(textComplete, 3, 3, 1, 1);
+        // # of tanks complete
+        gridPane.add(labelComplete, 0, 3, 1, 1);
+        gridPane.add(textComplete, 1, 3, 1, 1);
+
 
         scene = new Scene(gridPane, 400, 400);
         window.setScene(scene);
@@ -136,43 +129,36 @@ public class Main extends Application
     private static void playFillAnimation()
     {
         if (ChocolateBoiler.getInstance().isEmpty())
-        {
-            chocolateBoilerImageView.setImage(chocolateBoilerFillAnimationImage);
-            ChocolateBoiler.getInstance().fill();
-        }
+            chocolateBoilerImageView.setImage(chocolateUnboiledFillAnimationImage);
         else
-        {
             System.out.println("Cannot fill: already filled");
-        }
     }
 
     private static void stopFillAnimation()
     {
-        chocolateBoilerImageView.setImage(chocolateBoilerFullImage);
+        if (!ChocolateBoiler.getInstance().isBoiled())
+            chocolateBoilerImageView.setImage(chocolateUnboiledFullImage);
+        else
+            chocolateBoilerImageView.setImage(chocolateBoiledFullImage);
+
         textComplete.setText(Integer.toString(ChocolateBoiler.getInstance().getNumChocolateBoiled()));
 
-        ChocolateBoiler.getInstance().fill();
+        if (!ChocolateBoiler.getInstance().isBoiled())
+            ChocolateBoiler.getInstance().fill();
     }
 
     private static void playBoilAnimation()
     {
-        if (!ChocolateBoiler.getInstance().isEmpty())
+        if (!ChocolateBoiler.getInstance().isEmpty() && !ChocolateBoiler.getInstance().isBoiled()) // full and unboiled
         {
-            if (!ChocolateBoiler.getInstance().isBoiled())
-            {
-
-            }
-        }
-
-
-        if (!ChocolateBoiler.getInstance().isEmpty() && !ChocolateBoiler.getInstance().isBoiled())
-            boilImageView.setVisible(true);
-        else
+            boilImageView.setVisible(true); // spark
+        } else
+        {
             if (ChocolateBoiler.getInstance().isEmpty())
                 System.out.println("Cannot boil: tank is empty");
             else
                 System.out.println("Cannot boil: tank is already boiled");
-
+        }
     }
 
     private static void stopBoilAnimation()
@@ -180,7 +166,7 @@ public class Main extends Application
         if (!ChocolateBoiler.getInstance().isEmpty() && !ChocolateBoiler.getInstance().isBoiled())
         {
             boilImageView.setVisible(false);
-            chocolateBoilerImageView.setImage(chocolateBoilerBoiledImage);
+            chocolateBoilerImageView.setImage(chocolateBoiledFullImage);
         }
 
         ChocolateBoiler.getInstance().boil();
@@ -189,7 +175,10 @@ public class Main extends Application
     private static void playDrainAnimation()
     {
         if (!ChocolateBoiler.getInstance().isEmpty())
-            chocolateBoilerImageView.setImage(chocolateBoilerDrainAnimationImage);
+            if (ChocolateBoiler.getInstance().isBoiled())
+                chocolateBoilerImageView.setImage(chocolateBoiledDrainAnimationImage);
+            else
+                chocolateBoilerImageView.setImage(chocolateUnboiledDrainAnimationImage);
         else
             System.out.println("Cannot drain: tank is empty");
     }
@@ -199,9 +188,8 @@ public class Main extends Application
         if (!ChocolateBoiler.getInstance().isEmpty())
             chocolateBoilerImageView.setImage(chocolateBoilerEmptyImage);
 
-        textComplete.setText(Integer.toString(ChocolateBoiler.getInstance().getNumChocolateBoiled()));
-
         ChocolateBoiler.getInstance().drain();
+        textComplete.setText(Integer.toString(ChocolateBoiler.getInstance().getNumChocolateBoiled()));
     }
 
     /**
