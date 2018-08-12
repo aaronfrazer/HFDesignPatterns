@@ -10,6 +10,8 @@ public class TestMuteQuack
     public void testMuteQuack()
     {
         QuackBehavior muteQuack = new MuteQuack();
+        muteQuack.quack();
+
         assertTrue(muteQuack instanceof QuackBehavior);
     }
 }

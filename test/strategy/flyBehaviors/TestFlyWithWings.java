@@ -10,6 +10,7 @@ public class TestFlyWithWings
     public void testFlyWithWings()
     {
         FlyBehavior flyWithWings = new FlyWithWings();
+
         assertTrue(flyWithWings instanceof FlyBehavior);
     }
 }

@@ -10,6 +10,7 @@ public class TestFlyRocketPowered
     public void testFlyRocketPowered()
     {
         FlyBehavior flyRocketPowered = new FlyRocketPowered();
+
         assertTrue(flyRocketPowered instanceof FlyBehavior);
     }
 }
