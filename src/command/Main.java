@@ -40,6 +40,13 @@ public class Main extends Application
     private Button buttonPartyModeOn = new Button("On");
     private Button buttonPartyModeOff = new Button("Off");
 
+    private RemoteControlWithUndo remoteControl = new RemoteControlWithUndo();
+
+    private Light livingRoomLight = new Light("Living Room");
+
+    private LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight);
+    private LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
+
     public static void main(String[] args)
     {
         Application.launch(args);
@@ -79,6 +86,11 @@ public class Main extends Application
         gridPane.add(buttonAllLightsOff, 2, 5, 1, 1);
         gridPane.add(buttonPartyModeOn, 1, 6, 1, 1);
         gridPane.add(buttonPartyModeOff, 2, 6, 1, 1);
+
+        // When you click the buttons, show their image
+//        buttonLivingRoomLightOn.setOnAction(e -> );
+//        buttonLivingRoomLightOff.setOnAction(e -> );
+        // ...
 
         scene = new Scene(gridPane, 800, 400);
         window.setScene(scene);
