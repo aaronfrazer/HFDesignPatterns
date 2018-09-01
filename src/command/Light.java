@@ -2,8 +2,8 @@ package command;
 
 public class Light
 {
-    String location;
-    int level;
+    private String location;
+    private int level;
 
     public Light(String location)
     {
@@ -13,16 +13,18 @@ public class Light
     public void on()
     {
         level = 100;
-        System.out.println("Light is on");
+        Main.displayImage(location, true);
+        System.out.println(location + " Light is on");
     }
 
     public void off()
     {
         level = 0;
-        System.out.println("Light is off");
+        Main.displayImage(location, false);
+        System.out.println(location + " Light is off");
     }
 
-    public void dim(int level)
+    protected void dim(int level)
     {
         this.level = level;
         if (level == 0)
@@ -34,7 +36,7 @@ public class Light
         }
     }
 
-    public int getLevel()
+    protected int getLevel()
     {
         return level;
     }
