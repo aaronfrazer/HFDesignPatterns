@@ -13,14 +13,14 @@ public class Light
     public void on()
     {
         level = 100;
-        Main.displayImage(location, true);
+        Main.displayLightImage(location, true);
         System.out.println(location + " Light is on");
     }
 
     public void off()
     {
         level = 0;
-        Main.displayImage(location, false);
+        Main.displayLightImage(location, false);
         System.out.println(location + " Light is off");
     }
 

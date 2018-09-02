@@ -10,12 +10,14 @@ public class CeilingFanHighCommand implements Command
 		this.ceilingFan = ceilingFan;
 	}
 
+	@Override
 	public void execute()
 	{
 		prevSpeed = ceilingFan.getSpeed();
 		ceilingFan.high();
 	}
 
+	@Override
 	public void undo()
 	{
 		if (prevSpeed == CeilingFan.HIGH)
