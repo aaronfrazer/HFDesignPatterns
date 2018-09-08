@@ -14,11 +14,6 @@ import java.io.File;
 
 import static command.CeilingFan.*;
 
-/**
- * TODO: Implement these appliances:
- * 1. Hottub
- * 2. TV
- */
 public class Main extends Application
 {
     private static String imageDir = "res/images/command/";
@@ -33,6 +28,8 @@ public class Main extends Application
     private static ImageView imageViewCeilingFan = new ImageView(new Image(new File(imageDir + "CeilingFanOff.gif").toURI().toString()));
     private static ImageView imageViewGarageDoor = new ImageView(new Image(new File(imageDir + "GarageDoorClosed.jpg").toURI().toString()));
     private static ImageView imageViewStereo = new ImageView(new Image(new File(imageDir + "StereoOff.gif").toURI().toString()));
+    private static ImageView imageViewHottub = new ImageView(new Image(new File(imageDir + "HotTubOff.jpg").toURI().toString()));
+    private static ImageView imageViewTV = new ImageView(new Image(new File(imageDir + "TVOff.jpg").toURI().toString()));
 
     private Label labelLivingRoomLight = new Label("Living Room Light");
     private Label labelKitchenLight = new Label("Kitchen Light");
@@ -41,6 +38,8 @@ public class Main extends Application
     private Label labelCeilingFanHigh = new Label("Ceiling Fan High");
     private Label labelGarageDoor = new Label("Garage Door");
     private Label labelStereo = new Label("Stereo");
+    private Label labelHottub = new Label("Hot Tub");
+    private Label labelTV = new Label("TV");
     private Label labelAllLights = new Label("All Lights");
     private Label labelPartyMode = new Label("Party Mode");
     private Label labelUndo = new Label("Undo");
@@ -59,6 +58,10 @@ public class Main extends Application
     private Button buttonGarageDoorDown = new Button("Off");
     private Button buttonStereoOn = new Button("On");
     private Button buttonStereoOff = new Button("Off");
+    private Button buttonHottubOn = new Button("On");
+    private Button buttonHottubOff = new Button("Off");
+    private Button buttonTVOn = new Button("On");
+    private Button buttonTVOff = new Button("Off");
     private Button buttonAllLightsOn = new Button("On");
     private Button buttonAllLightsOff = new Button("Off");
     private Button buttonPartyModeOn = new Button("On");
@@ -71,6 +74,8 @@ public class Main extends Application
     private CeilingFan ceilingFan = new CeilingFan("Living Room");
     private GarageDoor garageDoor = new GarageDoor("Garage");
     private Stereo stereo = new Stereo("Garage");
+    private Hottub hottub = new Hottub();
+    private TV tv = new TV("Living Room");
 
     // Commands
     private LightOnCommand livingRoomLightOnCommand = new LightOnCommand(livingRoomLight);
@@ -85,6 +90,10 @@ public class Main extends Application
     private GarageDoorUpCommand garageDoorUpCommand = new GarageDoorUpCommand(garageDoor);
     private StereoOnCommand stereoOnCommand = new StereoOnCommand(stereo);
     private StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
+    private HottubOnCommand hottubOnCommand = new HottubOnCommand(hottub);
+    private HottubOffCommand hottubOffCommand = new HottubOffCommand(hottub);
+    private TVOnCommand tvOnCommand = new TVOnCommand(tv);
+    private TVOffCommand tvOffCommand = new TVOffCommand(tv);
 
     // All Lights Command
     private Command[] allLightsOn = {livingRoomLightOnCommand, kitchenLightOnCommand};
@@ -93,8 +102,8 @@ public class Main extends Application
     private MacroCommand allLightsOffMacro = new MacroCommand(allLightsOff);
 
     // Party Command
-    private Command[] partyOn = {livingRoomLightOnCommand, kitchenLightOnCommand, ceilingFanMediumCommand, garageDoorUpCommand, stereoOnCommand};
-    private Command[] partyOff = {livingRoomLightOffCommand, kitchenLightOffCommand, ceilingFanOffCommand, garageDoorDownCommand, stereoOffCommand};
+    private Command[] partyOn = {livingRoomLightOnCommand, kitchenLightOnCommand, ceilingFanMediumCommand, garageDoorUpCommand, stereoOnCommand, hottubOnCommand, tvOnCommand};
+    private Command[] partyOff = {livingRoomLightOffCommand, kitchenLightOffCommand, ceilingFanOffCommand, garageDoorDownCommand, stereoOffCommand, hottubOffCommand, tvOffCommand};
     private MacroCommand partyOnMacro = new MacroCommand(partyOn);
     private MacroCommand partyOffMacro = new MacroCommand(partyOff);
 
@@ -116,16 +125,20 @@ public class Main extends Application
         gridPane.setHgap(40);
         gridPane.setVgap(20);
 
-        imageViewLivingRoom.setFitHeight(100);
+        imageViewLivingRoom.setFitHeight(80);
         imageViewLivingRoom.setPreserveRatio(true);
-        imageViewKitchen.setFitHeight(100);
+        imageViewKitchen.setFitHeight(80);
         imageViewKitchen.setPreserveRatio(true);
-        imageViewCeilingFan.setFitHeight(100);
+        imageViewCeilingFan.setFitHeight(80);
         imageViewCeilingFan.setPreserveRatio(true);
-        imageViewGarageDoor.setFitHeight(100);
+        imageViewGarageDoor.setFitHeight(80);
         imageViewGarageDoor.setPreserveRatio(true);
-        imageViewStereo.setFitHeight(100);
+        imageViewStereo.setFitHeight(80);
         imageViewStereo.setPreserveRatio(true);
+        imageViewHottub.setFitHeight(80);
+        imageViewHottub.setPreserveRatio(true);
+        imageViewTV.setFitHeight(80);
+        imageViewTV.setPreserveRatio(true);
 
         // Set remote control with commands
         remoteControl.setCommand(0, livingRoomLightOnCommand, livingRoomLightOffCommand);
@@ -135,6 +148,8 @@ public class Main extends Application
         remoteControl.setCommand(4, ceilingFanHighCommand, ceilingFanOffCommand);
         remoteControl.setCommand(5, garageDoorUpCommand, garageDoorDownCommand);
         remoteControl.setCommand(6, stereoOnCommand, stereoOffCommand);
+        remoteControl.setCommand(7, hottubOnCommand, hottubOffCommand);
+        remoteControl.setCommand(8, tvOnCommand, tvOffCommand);
 
         // Labels and buttons
         gridPane.add(labelLivingRoomLight, 0, 0, 1, 1);
@@ -163,14 +178,22 @@ public class Main extends Application
         gridPane.add(buttonStereoOn, 1, 6, 1, 1);
         gridPane.add(buttonStereoOff, 2, 6, 1, 1);
         gridPane.add(imageViewStereo, 3, 6, 1, 1);
-        gridPane.add(labelAllLights, 0, 7, 1, 1);
-        gridPane.add(buttonAllLightsOn, 1, 7, 1, 1);
-        gridPane.add(buttonAllLightsOff, 2, 7, 1, 1);
-        gridPane.add(labelPartyMode, 0, 8, 1, 1);
-        gridPane.add(buttonPartyModeOn, 1, 8, 1, 1);
-        gridPane.add(buttonPartyModeOff, 2, 8, 1, 1);
-        gridPane.add(labelUndo, 0, 9, 1, 1);
-        gridPane.add(buttonUndo, 1, 9, 1, 1);
+        gridPane.add(labelHottub, 0, 7, 1, 1);
+        gridPane.add(buttonHottubOn, 1, 7, 1, 1);
+        gridPane.add(buttonHottubOff, 2, 7, 1, 1);
+        gridPane.add(imageViewHottub, 3, 7, 1, 1);
+        gridPane.add(labelTV, 0, 8, 1, 1);
+        gridPane.add(buttonTVOn, 1, 8, 1, 1);
+        gridPane.add(buttonTVOff, 2, 8, 1, 1);
+        gridPane.add(imageViewTV, 3, 8, 1, 1);
+        gridPane.add(labelAllLights, 0, 9, 1, 1);
+        gridPane.add(buttonAllLightsOn, 1, 9, 1, 1);
+        gridPane.add(buttonAllLightsOff, 2, 9, 1, 1);
+        gridPane.add(labelPartyMode, 0, 10, 1, 1);
+        gridPane.add(buttonPartyModeOn, 1, 10, 1, 1);
+        gridPane.add(buttonPartyModeOff, 2, 10, 1, 1);
+        gridPane.add(labelUndo, 0, 11, 1, 1);
+        gridPane.add(buttonUndo, 1, 11, 1, 1);
 
         // When you click the buttons, execute their actions
         buttonLivingRoomLightOn.setOnAction(e -> remoteControl.onButtonWasPushed(0));
@@ -187,6 +210,10 @@ public class Main extends Application
         buttonGarageDoorDown.setOnAction(e -> remoteControl.offButtonWasPushed(5));
         buttonStereoOn.setOnAction(e -> remoteControl.onButtonWasPushed(6));
         buttonStereoOff.setOnAction(e -> remoteControl.offButtonWasPushed(6));
+        buttonHottubOn.setOnAction(e -> remoteControl.onButtonWasPushed(7));
+        buttonHottubOff.setOnAction(e -> remoteControl.offButtonWasPushed(7));
+        buttonTVOn.setOnAction(e -> remoteControl.onButtonWasPushed(8));
+        buttonTVOff.setOnAction(e -> remoteControl.offButtonWasPushed(8));
         buttonAllLightsOn.setOnAction(e -> allLightsOnMacro.execute());
         buttonAllLightsOff.setOnAction(e -> allLightsOffMacro.execute());
         buttonPartyModeOn.setOnAction(e -> partyOnMacro.execute());
@@ -255,6 +282,30 @@ public class Main extends Application
             file = new File(imageDir + "StereoOff.gif");
 
         imageViewStereo.setImage(new Image(file.toURI().toString()));
+    }
+
+    static void turnOnOffHuttub(boolean on)
+    {
+        File file;
+
+        if (on)
+            file = new File(imageDir + "HotTubOn.jpg");
+        else
+            file = new File(imageDir + "HotTubOff.jpg");
+
+        imageViewHottub.setImage(new Image(file.toURI().toString()));
+    }
+
+    static void turnOnOffTV(boolean on)
+    {
+        File file;
+
+        if (on)
+            file = new File(imageDir + "TVOn.gif");
+        else
+            file = new File(imageDir + "TVOff.jpg");
+
+        imageViewTV.setImage(new Image(file.toURI().toString()));
     }
 
     /**
