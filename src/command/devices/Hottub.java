@@ -1,4 +1,6 @@
-package command;
+package command.devices;
+
+import command.Main;
 
 public class Hottub
 {

@@ -1,4 +1,6 @@
-package command;
+package command.commands;
+
+import command.devices.Light;
 
 public class LightOffCommand implements Command
 {

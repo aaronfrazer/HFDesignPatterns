@@ -1,4 +1,6 @@
-package command;
+package command.devices;
+
+import command.Main;
 
 public class Light
 {
@@ -24,7 +26,7 @@ public class Light
         System.out.println(location + " Light is off");
     }
 
-    protected void dim(int level)
+    public void dim(int level)
     {
         this.level = level;
         if (level == 0)
@@ -36,7 +38,7 @@ public class Light
         }
     }
 
-    protected int getLevel()
+    public int getLevel()
     {
         return level;
     }

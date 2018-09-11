@@ -1,5 +1,8 @@
 package command;
 
+import command.commands.*;
+import command.devices.*;
+import command.remoteControl.RemoteControlWithUndo;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-import static command.CeilingFan.*;
+import static command.devices.CeilingFan.*;
 
 public class Main extends Application
 {
@@ -220,12 +223,12 @@ public class Main extends Application
         buttonPartyModeOff.setOnAction(e -> partyOffMacro.execute());
         buttonUndo.setOnAction(e -> remoteControl.undoButtonWasPushed());
 
-        scene = new Scene(gridPane, 600, 1000);
+        scene = new Scene(gridPane, 600, 800);
         window.setScene(scene);
         window.show();
     }
 
-    static void displayLightImage(String location, boolean on)
+    public static void displayLightImage(String location, boolean on)
     {
         File file;
 
@@ -240,7 +243,7 @@ public class Main extends Application
             imageViewKitchen.setImage(new Image(file.toURI().toString()));
     }
 
-    static void turnOnCeilingFan(int speed)
+    public static void turnOnCeilingFan(int speed)
     {
         File file = null;
 
@@ -260,7 +263,7 @@ public class Main extends Application
             imageViewCeilingFan.setImage(new Image(file.toURI().toString()));
     }
 
-    static void openCloseGarageDoor(boolean up)
+    public static void openCloseGarageDoor(boolean up)
     {
         File file;
 
@@ -272,7 +275,7 @@ public class Main extends Application
         imageViewGarageDoor.setImage(new Image(file.toURI().toString()));
     }
 
-    static void turnOnOffStereo(boolean on)
+    public static void turnOnOffStereo(boolean on)
     {
         File file;
 
@@ -284,7 +287,7 @@ public class Main extends Application
         imageViewStereo.setImage(new Image(file.toURI().toString()));
     }
 
-    static void turnOnOffHuttub(boolean on)
+    public static void turnOnOffHuttub(boolean on)
     {
         File file;
 
@@ -296,7 +299,7 @@ public class Main extends Application
         imageViewHottub.setImage(new Image(file.toURI().toString()));
     }
 
-    static void turnOnOffTV(boolean on)
+    public static void turnOnOffTV(boolean on)
     {
         File file;
 

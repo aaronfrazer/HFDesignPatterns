@@ -1,4 +1,7 @@
-package command;
+package command.remoteControl;
+
+import command.commands.Command;
+import command.commands.NoCommand;
 
 //
 // This is the invoker
@@ -9,7 +12,7 @@ public class RemoteControlWithUndo
 	private Command[] offCommands;
 	private Command undoCommand;
 
-	RemoteControlWithUndo()
+	public RemoteControlWithUndo()
 	{
 		onCommands = new Command[9];
 		offCommands = new Command[9];

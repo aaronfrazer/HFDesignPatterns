@@ -1,4 +1,6 @@
-package command;
+package command.commands;
+
+import command.devices.GarageDoor;
 
 public class GarageDoorDownCommand implements Command
 {

@@ -1,11 +1,13 @@
-package command;
+package command.commands;
+
+import command.devices.CeilingFan;
 
 public class CeilingFanMediumCommand implements Command
 {
 	private CeilingFan ceilingFan;
 	private int prevSpeed;
 
-	CeilingFanMediumCommand(CeilingFan ceilingFan)
+	public CeilingFanMediumCommand(CeilingFan ceilingFan)
 	{
 		this.ceilingFan = ceilingFan;
 	}

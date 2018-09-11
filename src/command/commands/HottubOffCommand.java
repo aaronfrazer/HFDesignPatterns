@@ -1,4 +1,6 @@
-package command;
+package command.commands;
+
+import command.devices.Hottub;
 
 public class HottubOffCommand implements Command
 {

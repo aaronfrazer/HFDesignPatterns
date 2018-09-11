@@ -1,4 +1,6 @@
-package command;
+package command.commands;
+
+import command.devices.Stereo;
 
 public class StereoOffCommand implements Command
 {
