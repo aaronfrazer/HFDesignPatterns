@@ -125,8 +125,8 @@ public class Main extends Application
         window.setTitle("Home Automation or Bust, Inc. : Home Automation Remote Control");
         window.setOnCloseRequest(e -> closeProgram());
 
-        gridPane.setHgap(40);
-        gridPane.setVgap(20);
+        gridPane.setHgap(20);
+        gridPane.setVgap(10);
 
         imageViewLivingRoom.setFitHeight(80);
         imageViewLivingRoom.setPreserveRatio(true);
