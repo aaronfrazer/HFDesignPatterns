@@ -1,24 +1,36 @@
 package adapter.ducks;
 
+import adapter.Main;
+
 public class TurkeyAdapter implements Duck
 {
-    Turkey turkey;
+    private String imageFly = "TurkeyFlying.gif";
+    private String imageLand = "Turkey.png";
+
+    private Turkey turkey;
 
     public TurkeyAdapter(Turkey turkey)
     {
         this.turkey = turkey;
     }
 
+    @Override
     public void quack()
     {
         turkey.gobble();
     }
 
+    @Override
     public void fly()
     {
-        for (int i = 0; i < 5; i++)
+        if (Main.buttonTurkeyAdapterFly.getText().equalsIgnoreCase("Fly"))
         {
-            turkey.fly();
+            Main.displayTurkeyAdapterImage(imageFly);
+            Main.buttonTurkeyAdapterFly.setText("Land");
+        } else
+        {
+            Main.displayTurkeyAdapterImage(imageLand);
+            Main.buttonTurkeyAdapterFly.setText("Fly");
         }
     }
 }

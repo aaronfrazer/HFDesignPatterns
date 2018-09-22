@@ -28,22 +28,20 @@ public class Main extends Application
     private GridPane gridPane = new GridPane();
 
     private static ImageView imageViewDuck = new ImageView(new Image(new File(imageDir + "MallardDuck.jpg").toURI().toString()));
-//    private static ImageView imageViewDuckFlying = new ImageView(new Image(new File(imageDir + "MallardDuckFlying.png").toURI().toString()));
     private static ImageView imageViewTurkey = new ImageView(new Image(new File(imageDir + "Turkey.png").toURI().toString()));
-//    private static ImageView imageViewTurkeyFlying = new ImageView(new Image(new File(imageDir + "TurkeyFlying.gif").toURI().toString()));
     private static ImageView imageViewTurkeyAdapter = new ImageView(new Image(new File(imageDir + "Turkey.png").toURI().toString()));
 
     private Label labelDuck = new Label("Duck");
     private Label labelTurkey = new Label("Turkey");
     private Label labelTurkeyAdapter = new Label("Turkey Adapter");
 
-    private Button buttonDuckFly = new Button("Fly");
+    public static Button buttonDuckFly = new Button("Fly");
     private Button buttonDuckQuack = new Button("Quack");
 
-    private Button buttonTurkeyFly = new Button("Fly");
+    public static Button buttonTurkeyFly = new Button("Fly");
     private Button buttonTurkeyQuack = new Button("Gobble");
 
-    private Button buttonTurkeyAdapterFly = new Button("Fly");
+    public static Button buttonTurkeyAdapterFly = new Button("Fly");
     private Button buttonTurkeyAdapterQuack = new Button("Quack");
 
     private MallardDuck duck = new MallardDuck();
@@ -104,22 +102,24 @@ public class Main extends Application
         window.show();
     }
 
-    /**
-     * Displays an image in a picture region.
-     *
-     * @param image file path
-     */
-    public static void displayImage(String image)
+    public static void displayDuckImage(String image)
     {
         File file = new File(imageDir + image);
         imageViewDuck.setImage(new Image(file.toURI().toString()));
     }
 
-    /**
-     * Plays a sound byte from a .wav file.
-     *
-     * @param sound file path
-     */
+    public static void displayTurkeyImage(String image)
+    {
+        File file = new File(imageDir + image);
+        imageViewTurkey.setImage(new Image(file.toURI().toString()));
+    }
+
+    public static void displayTurkeyAdapterImage(String image)
+    {
+        File file = new File(imageDir + image);
+        imageViewTurkeyAdapter.setImage(new Image(file.toURI().toString()));
+    }
+
     public static void playSound(String sound)
     {
         Media hit = new Media(new File(soundDir + sound).toURI().toString());

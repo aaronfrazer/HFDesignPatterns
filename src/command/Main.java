@@ -24,7 +24,6 @@ public class Main extends Application
     private Stage window;
     private Scene scene;
     private GridPane gridPane = new GridPane();
-    private StackPane stackPane = new StackPane();
 
     private static ImageView imageViewLivingRoom = new ImageView(new Image(new File(imageDir + "LightOff.jpg").toURI().toString()));
     private static ImageView imageViewKitchen = new ImageView(new Image(new File(imageDir + "LightOff.jpg").toURI().toString()));
