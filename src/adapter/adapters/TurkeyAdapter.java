@@ -1,6 +1,8 @@
-package adapter.ducks;
+package adapter.adapters;
 
 import adapter.Main;
+import adapter.ducks.Duck;
+import adapter.ducks.Turkey;
 
 public class TurkeyAdapter implements Duck
 {

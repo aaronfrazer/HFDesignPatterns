@@ -1,4 +1,7 @@
-package adapter.ducks;
+package adapter.adapters;
+
+import adapter.ducks.Duck;
+import adapter.ducks.Turkey;
 
 import java.util.Random;
 

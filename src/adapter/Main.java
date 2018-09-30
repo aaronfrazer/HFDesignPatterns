@@ -2,7 +2,7 @@ package adapter;
 
 import adapter.ducks.Duck;
 import adapter.ducks.MallardDuck;
-import adapter.ducks.TurkeyAdapter;
+import adapter.adapters.TurkeyAdapter;
 import adapter.ducks.WildTurkey;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
