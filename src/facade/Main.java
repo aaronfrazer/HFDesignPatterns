@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -19,8 +20,11 @@ public class Main extends Application
 
     private Stage window;
     private Scene scene;
-    private GridPane gridPane = new GridPane();
+    private GridPane gridPaneDevices = new GridPane();
+    private GridPane gridPaneButtons = new GridPane();
+    private HBox hBox = new HBox();
 
+    // Images
     private static ImageView imageViewAmplifier = new ImageView(new Image(new File(imageDir + "Amplifier.png").toURI().toString()));
     private static ImageView imageViewTuner = new ImageView(new Image(new File(imageDir + "Radio.png").toURI().toString()));
     private static ImageView imageViewDVDPlayer = new ImageView(new Image(new File(imageDir + "DVDPlayer.png").toURI().toString()));
@@ -28,10 +32,61 @@ public class Main extends Application
     private static ImageView imageViewProjector = new ImageView(new Image(new File(imageDir + "Projector.png").toURI().toString()));
     private static ImageView imageViewLights = new ImageView(new Image(new File(imageDir + "LightOff.jpg").toURI().toString()));
     private static ImageView imageViewScreen = new ImageView(new Image(new File(imageDir + "Screen.png").toURI().toString()));
-    private static ImageView imageViewPopcornPopper = new ImageView(new Image(new File(imageDir + "PopcornPopper.gif").toURI().toString()));
+    private static ImageView imageViewPopcornPopper = new ImageView(new Image(new File(imageDir + "PopcornPopperOff.png").toURI().toString()));
 
+    // Labels
+    private Label labelWatchMovie = new Label("Watch Movie:");
+    private Label labelAmplifier = new Label("Amplifier:");
+    private Label labelTuner = new Label("Radio:");
+    private Label labelDVD = new Label("DVD:");
+    private Label labelCD = new Label("CD:");
+    private Label labelProjector = new Label("Projector:");
+    private Label labelLights = new Label("Lights:");
+    private Label labelScreen = new Label("Screen:");
+    private Label labelPopcornPopper = new Label("Popcorn:");
+
+    // Buttons
     private Button buttonWatchMovie = new Button("Watch Movie");
     private Button buttonEndMovie = new Button("End Movie");
+    private Button buttonAmplifierOn = new Button("On");
+    private Button buttonAmplifierOff = new Button("Off");
+    private Button buttonAmplifierSetStereoSound = new Button("Stereo");
+    private Button buttonAmplifierSetSurroundSound = new Button("Surround");
+    private Button buttonAmplifierSetVolume = new Button("Set Volume");
+    private Button buttonAmplifierSetTuner = new Button("Radio");
+    private Button buttonAmplifierSetDVD = new Button("DVD");
+    private Button buttonAmplifierSetCD = new Button("CD");
+    private Button buttonTunerOn = new Button("On");
+    private Button buttonTunerOff = new Button("Off");
+    private Button buttonTunerSetFrequency = new Button("Set Frequency");
+    private Button buttonTunerSetAM = new Button("Set AM");
+    private Button buttonTunerSetFM = new Button("Set FM");
+    private Button buttonDvdPlayerOn = new Button("On");
+    private Button buttonDvdPlayerOff = new Button("Off");
+    private Button buttonDvdPlayerEject = new Button("Eject");
+    private Button buttonDvdPlayerPlay = new Button("Play");
+    private Button buttonDvdPlayerStop = new Button("Stop");
+    private Button buttonDvdPlayerPause = new Button("Pause");
+    private Button buttonDvdPlayerSetTwoChannelAudio = new Button("2 Channel Audio");
+    private Button buttonDvdPlayerSetSurroundAudio = new Button("Surround Audio");
+    private Button buttonCdPlayerOn = new Button("On");
+    private Button buttonCdPlayerOff = new Button("Off");
+    private Button buttonCdPlayerEject = new Button("Eject");
+    private Button buttonCdPlayerPlay = new Button("Play");
+    private Button buttonCdPlayerStop = new Button("Stop");
+    private Button buttonCdPlayerPause = new Button("Pause");
+    private Button buttonProjectorOn = new Button("On");
+    private Button buttonProjectorOff = new Button("Off");
+    private Button buttonProjectorWideScreenMode = new Button("Wide Screen Mode");
+    private Button buttonProjectorTvMode = new Button("TV Mode");
+    private Button buttonLightsOn = new Button("On");
+    private Button buttonLightsOff = new Button("Off");
+    private Button buttonLightsDim = new Button("Dim");
+    private Button buttonScreenUp = new Button("Up");
+    private Button buttonScreenDown = new Button("Down");
+    private Button buttonPopcornOn = new Button("On");
+    private Button buttonPopcornOff = new Button("Off");
+    private Button buttonPopcornPop = new Button("Pop");
 
     // Appliances
     private Amplifier amp = new Amplifier("Top-O-Line Amplifier");
@@ -46,6 +101,7 @@ public class Main extends Application
     // Remote Control
     private HomeTheaterFacade homeTheater = new HomeTheaterFacade(amp, tuner, dvd, cd, projector, screen, lights, popper);
 
+
     public static void main(String[] args)
     {
         Application.launch(args);
@@ -58,10 +114,12 @@ public class Main extends Application
         window.setTitle("Home Theater Facade : Top-O-Line Movie Theater");
         window.setOnCloseRequest(e -> closeProgram());
 
-        gridPane.setHgap(20);
-        gridPane.setVgap(10);
+        gridPaneDevices.setHgap(20);
+        gridPaneDevices.setVgap(0);
+        gridPaneButtons.setHgap(20);
+        gridPaneButtons.setVgap(10);
 
-        imageViewAmplifier.setFitHeight(80);
+        imageViewAmplifier.setFitHeight(60);
         imageViewAmplifier.setPreserveRatio(true);
         imageViewTuner.setFitHeight(80);
         imageViewTuner.setPreserveRatio(true);
@@ -73,29 +131,80 @@ public class Main extends Application
         imageViewProjector.setPreserveRatio(true);
         imageViewLights.setFitHeight(80);
         imageViewLights.setPreserveRatio(true);
-        imageViewScreen.setFitHeight(80);
+        imageViewScreen.setFitHeight(120);
         imageViewScreen.setPreserveRatio(true);
-        imageViewPopcornPopper.setFitHeight(80);
+        imageViewPopcornPopper.setFitHeight(200);
         imageViewPopcornPopper.setPreserveRatio(true);
 
-        // Pictures and buttons
-        gridPane.add(imageViewLights, 1, 0, 1, 1);
+        // Devices
+        gridPaneDevices.add(imageViewLights, 1, 0, 1, 1);
+        gridPaneDevices.add(imageViewScreen, 0, 1, 1, 3);
+        gridPaneDevices.add(imageViewProjector, 1, 1, 1, 1);
+        gridPaneDevices.add(imageViewTuner, 1, 2, 1, 1);
+        gridPaneDevices.add(imageViewDVDPlayer, 1, 3, 1, 1);
+        gridPaneDevices.add(imageViewCDPlayer, 1, 4, 1, 1);
+        gridPaneDevices.add(imageViewAmplifier, 1, 5, 1, 1);
+        gridPaneDevices.add(imageViewPopcornPopper, 3, 1, 1, 5);
 
-        gridPane.add(imageViewScreen, 0, 1, 1, 1);
-        gridPane.add(imageViewProjector, 1, 1, 1, 1);
-        gridPane.add(imageViewTuner, 1, 2, 1, 1);
-        gridPane.add(imageViewDVDPlayer, 1, 3, 1, 1);
-        gridPane.add(imageViewCDPlayer, 1, 4, 1, 1);
-        gridPane.add(imageViewAmplifier, 1, 5, 1, 1);
-        gridPane.add(imageViewPopcornPopper, 3, 1, 1, 1);
-        gridPane.add(buttonWatchMovie, 4, 0, 1, 1);
-        gridPane.add(buttonEndMovie, 4, 1, 1, 1);
+        // Buttons
+        gridPaneButtons.add(labelWatchMovie, 0, 0, 1, 1);
+        gridPaneButtons.add(buttonWatchMovie, 1, 0, 1, 1);
+        gridPaneButtons.add(buttonEndMovie, 2, 0, 1, 1);
+        gridPaneButtons.add(labelAmplifier, 0, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierOn, 1, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierOff, 2, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierSetStereoSound, 3, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierSetSurroundSound, 4, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierSetVolume, 5, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierSetTuner, 6, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierSetDVD, 7, 1, 1, 1);
+        gridPaneButtons.add(buttonAmplifierSetCD, 8, 1, 1, 1);
+        gridPaneButtons.add(labelTuner, 0, 2, 1, 1);
+        gridPaneButtons.add(buttonTunerOn, 1, 2, 1, 1);
+        gridPaneButtons.add(buttonTunerOff, 2, 2, 1, 1);
+        gridPaneButtons.add(buttonTunerSetFrequency, 3, 2, 1, 1);
+        gridPaneButtons.add(buttonTunerSetAM, 4, 2, 1, 1);
+        gridPaneButtons.add(buttonTunerSetFM, 5, 2, 1, 1);
+        gridPaneButtons.add(labelDVD, 0, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerOn, 1, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerOff, 2, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerEject, 3, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerPlay, 4, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerStop, 5, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerPause, 6, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerSetTwoChannelAudio, 7, 3, 1, 1);
+        gridPaneButtons.add(buttonDvdPlayerSetSurroundAudio, 8, 3, 1, 1);
+        gridPaneButtons.add(labelCD, 0, 4, 1, 1);
+        gridPaneButtons.add(buttonCdPlayerOn, 1, 4, 1, 1);
+        gridPaneButtons.add(buttonCdPlayerOff, 2, 4, 1, 1);
+        gridPaneButtons.add(buttonCdPlayerEject, 3, 4, 1, 1);
+        gridPaneButtons.add(buttonCdPlayerPlay, 4, 4, 1, 1);
+        gridPaneButtons.add(buttonCdPlayerStop, 5, 4, 1, 1);
+        gridPaneButtons.add(buttonCdPlayerPause, 6, 4, 1, 1);
+        gridPaneButtons.add(labelProjector, 0, 5, 1, 1);
+        gridPaneButtons.add(buttonProjectorOn, 1, 5, 1, 1);
+        gridPaneButtons.add(buttonProjectorOff, 2, 5, 1, 1);
+        gridPaneButtons.add(buttonProjectorWideScreenMode, 3, 5, 1, 1);
+        gridPaneButtons.add(buttonProjectorTvMode, 4, 5, 1, 1);
+        gridPaneButtons.add(labelLights, 0, 6, 1, 1);
+        gridPaneButtons.add(buttonLightsOn, 1, 6, 1, 1);
+        gridPaneButtons.add(buttonLightsOff, 2, 6, 1, 1);
+        gridPaneButtons.add(buttonLightsDim, 3, 6, 1, 1);
+        gridPaneButtons.add(labelScreen, 0, 7, 1, 1);
+        gridPaneButtons.add(buttonScreenUp, 1, 7, 1, 1);
+        gridPaneButtons.add(buttonScreenDown, 2, 7, 1, 1);
+        gridPaneButtons.add(labelPopcornPopper, 0, 8, 1, 1);
+        gridPaneButtons.add(buttonPopcornOn, 1, 8, 1, 1);
+        gridPaneButtons.add(buttonPopcornOff, 2, 8, 1, 1);
+        gridPaneButtons.add(buttonPopcornPop, 3, 8, 1, 1);
 
         // When you click the buttons, execute their actions
         buttonWatchMovie.setOnAction(e -> homeTheater.watchMovie("Raiders of the Lost Ark"));
         buttonEndMovie.setOnAction(e -> homeTheater.endMovie());
 
-        scene = new Scene(gridPane, 600, 800);
+        hBox.getChildren().addAll(gridPaneDevices, gridPaneButtons);
+
+        scene = new Scene(hBox, 1600, 600);
         window.setScene(scene);
         window.show();
     }
