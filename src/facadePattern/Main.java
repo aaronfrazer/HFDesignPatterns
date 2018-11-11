@@ -1,7 +1,7 @@
-package facade;
+package facadePattern;
 
-import facade.appliances.*;
-import facade.homeTheater.HomeTheaterFacade;
+import facadePattern.appliances.*;
+import facadePattern.homeTheater.HomeTheaterFacade;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,7 +18,7 @@ import static command.devices.CeilingFan.*;
 
 public class Main extends Application
 {
-    private static String imageDir = "res/images/facade/";
+    private static String imageDir = "res/images/facadePattern/";
 
     private Stage window;
     private Scene scene;

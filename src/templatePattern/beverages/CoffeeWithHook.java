@@ -1,6 +1,6 @@
-package template.beverages;
+package templatePattern.beverages;
 
-import template.caffineBeverage.CaffeineBeverageWithHook;
+import templatePattern.caffineBeverage.CaffeineBeverageWithHook;
 
 import java.io.*;
 

@@ -1,6 +1,6 @@
-package template.beverages;
+package templatePattern.beverages;
 
-import template.caffineBeverage.CaffeineBeverage;
+import templatePattern.caffineBeverage.CaffeineBeverage;
 
 public class Tea extends CaffeineBeverage
 {

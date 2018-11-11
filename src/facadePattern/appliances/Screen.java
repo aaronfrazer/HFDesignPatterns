@@ -1,4 +1,4 @@
-package facade.appliances;
+package facadePattern.appliances;
 
 public class Screen
 {

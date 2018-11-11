@@ -1,4 +1,4 @@
-package template.caffineBeverage;
+package templatePattern.caffineBeverage;
 
 public abstract class CaffeineBeverage {
   
