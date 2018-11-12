@@ -1,6 +1,6 @@
-package facadePattern.homeTheater;
+package facade.homeTheater;
 
-import facadePattern.appliances.*;
+import facade.appliances.*;
 
 public class HomeTheaterFacade
 {

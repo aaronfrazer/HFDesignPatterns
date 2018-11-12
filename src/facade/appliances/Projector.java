@@ -1,4 +1,4 @@
-package facadePattern.appliances;
+package facade.appliances;
 
 public class Projector
 {

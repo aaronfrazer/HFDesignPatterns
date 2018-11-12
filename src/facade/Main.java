@@ -1,7 +1,10 @@
-package facadePattern;
+package facade;
 
-import facadePattern.appliances.*;
-import facadePattern.homeTheater.HomeTheaterFacade;
+<<<<<<< HEAD:src/facadePattern/Main.java
+import facade.appliances.*;
+import facade.homeTheater.HomeTheaterFacade;
+=======
+>>>>>>> parent of 6aa4d6d... Uploaded Template pattern:src/facade/Main.java
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,7 +21,7 @@ import static command.devices.CeilingFan.*;
 
 public class Main extends Application
 {
-    private static String imageDir = "res/images/facadePattern/";
+    private static String imageDir = "res/images/facade1/";
 
     private Stage window;
     private Scene scene;
