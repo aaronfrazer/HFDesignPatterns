@@ -1,10 +1,7 @@
 package facade;
 
-<<<<<<< HEAD:src/facadePattern/Main.java
 import facade.appliances.*;
 import facade.homeTheater.HomeTheaterFacade;
-=======
->>>>>>> parent of 6aa4d6d... Uploaded Template pattern:src/facade/Main.java
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
