@@ -4,8 +4,6 @@ import static template.Main.*;
 
 public abstract class CaffeineBeverage
 {
-	private String beverageName;
-
 	public final void prepareRecipe(String beverageName, boolean condiments)
 	{
 		System.out.println("--- Preparing " + beverageName + " Recipe ---");
