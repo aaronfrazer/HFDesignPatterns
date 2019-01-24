@@ -1,54 +1,24 @@
-package templatePattern.beverages;
+package template.beverages;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import static template.Main.brewTimeline;
+import static template.Main.condimentsTimeline;
 
 public class Tea extends CaffeineBeverage
 {
+	private String beverageName = "Tea";
+
 	public void brew()
 	{
-		System.out.println("Steeping the tea");
+		brewTimeline.play();
 	}
 
 	public void addCondiments()
 	{
-		System.out.println("Adding Lemon");
+		condimentsTimeline.play();
 	}
 
-	public boolean customerWantsCondiments()
+	public String toString()
 	{
-
-		String answer = getUserInput();
-
-		if (answer.toLowerCase().startsWith("y"))
-		{
-			return true;
-		} else
-		{
-			return false;
-		}
-	}
-
-	private String getUserInput()
-	{
-		// get the user's response
-		String answer = null;
-
-		System.out.print("Would you like lemon with your tea (y/n)? ");
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		try
-		{
-			answer = in.readLine();
-		} catch (IOException ioe)
-		{
-			System.err.println("IO error trying to read your answer");
-		}
-		if (answer == null)
-		{
-			return "no";
-		}
-		return answer;
+		return beverageName;
 	}
 }

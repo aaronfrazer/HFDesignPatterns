@@ -4,9 +4,11 @@ import static template.Main.*;
 
 public abstract class CaffeineBeverage
 {
-	public final void prepareRecipe(boolean condiments)
+	private String beverageName;
+
+	public final void prepareRecipe(String beverageName, boolean condiments)
 	{
-		System.out.println("Preparing recipe");
+		System.out.println("--- Preparing " + beverageName + " Recipe ---");
 		boilWater();
 		brew();
 		pourInCup();
@@ -20,22 +22,17 @@ public abstract class CaffeineBeverage
 
 	protected abstract void addCondiments();
 
-	void boilWater()
+	public abstract String toString();
+
+	private void boilWater()
 	{
 		// Play boiling water animation
-		System.out.println("Boiling Water...");
-		boilWaterImageView.setVisible(true);
-		numBeveragesBeingBoiled++;
-		beverageBoilAmount.setText("x" + numBeveragesBeingBoiled);
+		boilTimeline.play();
 	}
 
-	void pourInCup()
+	private void pourInCup()
 	{
-		System.out.println("Pouring into cup");
-	}
-
-	boolean customerWantsCondiments()
-	{
-		return true;
+		// Play pour animation
+		pourTimeline.play();
 	}
 }
