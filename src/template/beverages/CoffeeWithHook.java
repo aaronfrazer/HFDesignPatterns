@@ -1,43 +1,52 @@
 package templatePattern.beverages;
 
-import templatePattern.caffineBeverage.CaffeineBeverageWithHook;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class CoffeeWithHook extends CaffeineBeverageWithHook
 {
- 
-	public void brew() {
+
+	public void brew()
+	{
 		System.out.println("Dripping Coffee through filter");
 	}
- 
-	public void addCondiments() {
+
+	public void addCondiments()
+	{
 		System.out.println("Adding Sugar and Milk");
 	}
- 
-	public boolean customerWantsCondiments() {
+
+	public boolean customerWantsCondiments()
+	{
 
 		String answer = getUserInput();
 
-		if (answer.toLowerCase().startsWith("y")) {
+		if (answer.toLowerCase().startsWith("y"))
+		{
 			return true;
-		} else {
+		} else
+		{
 			return false;
 		}
 	}
- 
-	private String getUserInput() {
+
+	private String getUserInput()
+	{
 		String answer = null;
 
 		System.out.print("Would you like milk and sugar with your coffee (y/n)? ");
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		try {
+		try
+		{
 			answer = in.readLine();
-		} catch (IOException ioe) {
+		} catch (IOException ioe)
+		{
 			System.err.println("IO error trying to read your answer");
 		}
-		if (answer == null) {
+		if (answer == null)
+		{
 			return "no";
 		}
 		return answer;

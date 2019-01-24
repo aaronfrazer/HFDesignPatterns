@@ -1,17 +1,10 @@
 package template;
 
-import factory.pizzaStores.ChicagoPizzaStore;
-import factory.pizzaStores.NYPizzaStore;
-import factory.pizzaStores.PizzaStore;
-import factory.pizzas.Pizza;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -23,323 +16,245 @@ import java.io.File;
 
 public class Main extends Application
 {
-    private static int numPizzasBeingPrepared = 0, numPizzasBeingBaked = 0, numPizzasBeingCut = 0, numPizzasBeingBoxed = 0;
+	private static int numBeveragesBeingBoiled = 0, numBeveragesBeingBrewed = 0, numBeveragesBeingPouredIntoCup = 0, numBeveragesBeingCondimented = 0;
 
-    private static final Timeline timeline = new Timeline();
+	private static final Timeline timeline = new Timeline();
 
-    private static String imageDir = "res/images/factory/";
+	private static String imageDir = "res/images/template/";
 
-    private PizzaStore pizzaStore;
+	private Stage window;
+	private Scene scene;
+	private GridPane gridPane = new GridPane();
 
-    private static Pizza pizza;
+	private CheckBox teaCondimentsCheckBox = new CheckBox("Condiments");
+	private CheckBox coffeeCondimentsCheckBox = new CheckBox("Condiments");
 
-    private Stage window;
-    private Scene scene;
-    private GridPane gridPane = new GridPane();
+	private Button teaButton = new Button("Make Tea");
+	private Button coffeeButton = new Button("Make Coffee");
 
-    private ToggleGroup styleGroup = new ToggleGroup();
-    private ToggleGroup typeGroup = new ToggleGroup();
+	private static ImageView boilWaterImageView = new ImageView();
+	private static ImageView brewImageView = new ImageView();
+	private static ImageView pourInCupImageView = new ImageView();
+	private static ImageView addCondimentsImageView = new ImageView();
 
-    private Label labelType = new Label("Pizza Store:");
-    private RadioButton radioButtonChicago = new RadioButton("Chicago");
-    private RadioButton radioButtonNY = new RadioButton("New York");
+	private static Image boilWaterAnimationImage = new Image(new File(imageDir + "BoilWater.gif").toURI().toString());
+	private static Image steepTeaAnimationImage = new Image(new File(imageDir + "SteepTea.gif").toURI().toString());
+	private static Image filterCoffeeAnimationImage = new Image(new File(imageDir + "FilterCoffee.jpg").toURI().toString());
+	private static Image pourIntoCupAnimationImage = new Image(new File(imageDir + "PourIntoCup.gif").toURI().toString());
+	private static Image addLemonAnimationImage = new Image(new File(imageDir + "AddLemon.gif").toURI().toString());
+	private static Image addSugarAndMilkAnimationImage = new Image(new File(imageDir + "AddSugarAndMilk.gif").toURI().toString());
 
-    private Label labelPizzaMenu = new Label("--- Chicago Pizza Menu ---");
+	private static Text beverageBoilAmount = new Text("x" + numBeveragesBeingBoiled);
+	private static Text beverageBrewAmount = new Text("x" + numBeveragesBeingBrewed);
+	private static Text beveragePourAmount = new Text("x" + numBeveragesBeingPouredIntoCup);
+	private static Text beverageCondimentsAmount = new Text("x" + numBeveragesBeingCondimented);
 
-    private RadioButton radioButtonCheese = new RadioButton("Cheese");
-    private RadioButton radioButtonVeggie = new RadioButton("Veggie");
-    private RadioButton radioButtonClam = new RadioButton("Clam");
-    private RadioButton radioButtonPepperoni = new RadioButton("Pepperoni");
+	public static void main(String[] args)
+	{
+		Application.launch(args);
+	}
 
-    private Text textCheeseDescription = new Text();
-    private Text textVeggieDescription = new Text();
-    private Text textClamDescription = new Text();
-    private Text textPepperoniDescription = new Text();
+	@Override
+	public void start(Stage primaryStage)
+	{
+		window = primaryStage;
+		window.setTitle("StarBuzz: Tea and Coffee");
+		window.setOnCloseRequest(e -> closeProgram());
 
-    private Button orderButton = new Button("Order Pizza");
+		boilWaterImageView.setImage(boilWaterAnimationImage);
+//		brewImageView.setImage(brewAnimationImage);
+		pourInCupImageView.setImage(pourIntoCupAnimationImage);
+//		addCondimentsImageView.setImage(addCondimentAnimationImage);
 
-    private static ImageView pizzaPrepareImageView = new ImageView();
-    private static ImageView pizzaBakeImageView = new ImageView();
-    private static ImageView pizzaCutImageView = new ImageView();
-    private static ImageView pizzaBoxImageView = new ImageView();
+		boilWaterImageView.setVisible(false);
+		brewImageView.setVisible(false);
+		pourInCupImageView.setVisible(false);
+		addCondimentsImageView.setVisible(false);
 
-    private static Image prepareAnimationImage = new Image(new File(imageDir + "PizzaPrepare.gif").toURI().toString());
-    private static Image bakeAnimationImage = new Image(new File(imageDir + "PizzaBake.jpg").toURI().toString());
-    private static Image cutAnimationImage = new Image(new File(imageDir + "PizzaCut.gif").toURI().toString());
-    private static Image boxAnimationImage = new Image(new File(imageDir + "PizzaBox.gif").toURI().toString());
+		boilWaterImageView.setFitWidth(200);
+		boilWaterImageView.setFitHeight(200);
+		brewImageView.setFitWidth(200);
+		brewImageView.setFitHeight(200);
+		pourInCupImageView.setFitWidth(200);
+		pourInCupImageView.setFitHeight(200);
+		addCondimentsImageView.setFitWidth(200);
+		addCondimentsImageView.setFitHeight(200);
 
-    private static Text pizzaPrepareAmount = new Text("x" + numPizzasBeingPrepared);
-    private static Text pizzaBakeAmount = new Text("x" + numPizzasBeingPrepared);
-    private static Text pizzaCutAmount = new Text("x" + numPizzasBeingPrepared);
-    private static Text pizzaBoxAmount = new Text("x" + numPizzasBeingPrepared);
+		gridPane.add(teaButton, 0, 0, 1, 1);
+		gridPane.add(teaCondimentsCheckBox, 0, 2, 1, 1);
+		gridPane.add(coffeeButton, 1, 0, 1, 1);
+		gridPane.add(coffeeCondimentsCheckBox, 1, 2, 1, 1);
 
-    public static void main(String[] args)
-    {
-        Application.launch(args);
-    }
+		gridPane.add(boilWaterImageView, 0, 13, 1, 1);
+		gridPane.add(brewImageView, 1, 13, 1, 1);
+		gridPane.add(pourInCupImageView, 2, 13, 1, 1);
+		gridPane.add(addCondimentsImageView, 3, 13, 1, 1);
 
-    @Override
-    public void start(Stage primaryStage)
-    {
-        window = primaryStage;
-        window.setTitle("Pizza Store");
-        window.setOnCloseRequest(e -> closeProgram());
+		gridPane.add(beverageBoilAmount, 0, 14, 1, 1);
+		gridPane.add(beverageBrewAmount, 1, 14, 1, 1);
+		gridPane.add(beveragePourAmount, 2, 14, 1, 1);
+		gridPane.add(beverageCondimentsAmount, 3, 14, 1, 1);
 
-        radioButtonChicago.setToggleGroup(styleGroup);
-        radioButtonNY.setToggleGroup(styleGroup);
+		teaButton.setOnAction(e -> prepareTea());
+		coffeeButton.setOnAction(e -> prepareCoffee());
 
-        radioButtonChicago.setOnAction(e -> showChicagoButton());
-        radioButtonNY.setOnAction(e -> showNYButton());
+		scene = new Scene(gridPane, 1000, 600);
+		window.setScene(scene);
+		window.show();
 
-        radioButtonCheese.setToggleGroup(typeGroup);
-        radioButtonVeggie.setToggleGroup(typeGroup);
-        radioButtonClam.setToggleGroup(typeGroup);
-        radioButtonPepperoni.setToggleGroup(typeGroup);
+		// Initialize prepareTimeline: wait 2 seconds to simulate baking a pizza
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(0),
+						e -> playBoilWaterAnimation()
+				));
+		// stop animation
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(2000),
+						e -> stopBoilWaterAnimation()
+				));
 
-        pizzaPrepareImageView.setImage(prepareAnimationImage);
-        pizzaBakeImageView.setImage(bakeAnimationImage);
-        pizzaCutImageView.setImage(cutAnimationImage);
-        pizzaBoxImageView.setImage(boxAnimationImage);
+		// Initialize bakeTimeline: wait 2 seconds to simulate baking a pizza
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(2000),
+						e -> playBrewAnimation()
+				));
 
-        pizzaPrepareImageView.setVisible(false);
-        pizzaBakeImageView.setVisible(false);
-        pizzaCutImageView.setVisible(false);
-        pizzaBoxImageView.setVisible(false);
+		// stop animation
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(4000),
+						e -> stopBrewAnimation()
+				));
 
-        pizzaPrepareImageView.setFitWidth(200);
-        pizzaPrepareImageView.setFitHeight(200);
-        pizzaBakeImageView.setFitWidth(200);
-        pizzaBakeImageView.setFitHeight(200);
-        pizzaCutImageView.setFitWidth(200);
-        pizzaCutImageView.setFitHeight(200);
-        pizzaBoxImageView.setFitWidth(200);
-        pizzaBoxImageView.setFitHeight(200);
+		// Initialize cutTimeline: wait 2 seconds to simulate cutting a pizza
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(4000),
+						e -> playPourAnimation()
+				));
 
-        textCheeseDescription.setWrappingWidth(200);
-        textVeggieDescription.setWrappingWidth(200);
-        textClamDescription.setWrappingWidth(200);
-        textPepperoniDescription.setWrappingWidth(200);
+		// stop animation
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(6000),
+						e -> stopPourAnimation()
+				));
 
-        gridPane.add(labelType, 0, 0, 1, 1);
-        gridPane.add(radioButtonChicago, 0, 1, 1, 1);
-        gridPane.add(radioButtonNY, 0, 2, 1, 1);
+		// Initialize boxTimeline: wait 2 seconds to simulate boxing a pizza
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(6000),
+						e -> playAddCondimentsAnimation()
+				));
 
-        gridPane.add(labelPizzaMenu, 0, 3, 1, 1);
+		// stop animation
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(8000),
+						e -> stopAddCondimentsAnimation()
+				));
 
-        gridPane.add(radioButtonCheese, 0, 4, 1, 1);
-        gridPane.add(textCheeseDescription, 0, 5, 1, 1);
-        gridPane.add(radioButtonVeggie, 0, 6, 1, 1);
-        gridPane.add(textVeggieDescription, 0, 7, 1, 1);
-        gridPane.add(radioButtonClam, 0, 8, 1, 1);
-        gridPane.add(textClamDescription, 0, 9, 1, 1);
-        gridPane.add(radioButtonPepperoni, 0, 10, 1, 1);
-        gridPane.add(textPepperoniDescription, 0, 11, 1, 1);
+		// Initialize orderPizzaTimeline
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.millis(8000),
+						e -> printOrder()
+				));
+	}
 
-        gridPane.add(orderButton, 0, 12, 1, 1);
+	/**
+	 * Prepares tea with condiments (if selected).
+	 */
+	private void prepareTea()
+	{
+		if (teaCondimentsCheckBox.isSelected())
+		{
 
-        gridPane.add(pizzaPrepareImageView, 0, 13, 1, 1);
-        gridPane.add(pizzaBakeImageView, 1, 13, 1, 1);
-        gridPane.add(pizzaCutImageView, 2, 13, 1, 1);
-        gridPane.add(pizzaBoxImageView, 3, 13, 1, 1);
+		}
 
-        gridPane.add(pizzaPrepareAmount, 0, 14, 1, 1);
-        gridPane.add(pizzaBakeAmount, 1, 14, 1, 1);
-        gridPane.add(pizzaCutAmount, 2, 14, 1, 1);
-        gridPane.add(pizzaBoxAmount, 3, 14, 1, 1);
+		timeline.play();
+	}
 
-        orderButton.setOnAction(e -> orderPizza());
+	/**
+	 * Prepares coffee with condiments (if selected).
+	 */
+	private void prepareCoffee()
+	{
+		if (coffeeCondimentsCheckBox.isSelected())
+		{
 
-        scene = new Scene(gridPane, 1000, 600);
-        window.setScene(scene);
-        window.show();
+		}
 
-        // Initialize prepareTimeline: wait 2 seconds to simulate baking a pizza
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(0),
-                        e -> playPrepareAnimation()
-                ));
-        // stop animation
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(2000),
-                        e -> stopPrepareAnimation()
-                ));
+		timeline.play();
+	}
 
-        // Initialize bakeTimeline: wait 2 seconds to simulate baking a pizza
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(2000),
-                        e -> playBakeAnimation()
-                ));
+	/**
+	 * Outputs the order details to the command line.
+	 */
+	private void printOrder()
+	{
+		System.out.println("\nWe prepared a beverage");
+	}
 
-        // stop animation
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(4000),
-                        e -> stopBakeAnimation()
-                ));
+	private static void playBoilWaterAnimation()
+	{
+		System.out.println("Boiling Water...");
+		boilWaterImageView.setVisible(true);
+		numBeveragesBeingBoiled++;
+		beverageBoilAmount.setText("x" + numBeveragesBeingBoiled);
+	}
 
-        // Initialize cutTimeline: wait 2 seconds to simulate cutting a pizza
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(4000),
-                        e -> playCutAnimation()
-                ));
+	private static void stopBoilWaterAnimation()
+	{
+		boilWaterImageView.setVisible(false);
+		numBeveragesBeingBoiled--;
+		beverageBoilAmount.setText("x" + numBeveragesBeingBoiled);
+	}
 
-        // stop animation
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(6000),
-                        e -> stopCutAnimation()
-                ));
+	private static void playBrewAnimation()
+	{
+		System.out.println("Brewing Beverage...");
+		brewImageView.setVisible(true);
+		numBeveragesBeingBrewed++;
+		beverageBrewAmount.setText("x" + numBeveragesBeingBrewed);
+	}
 
-        // Initialize boxTimeline: wait 2 seconds to simulate boxing a pizza
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(6000),
-                        e -> playBoxAnimation()
-                ));
+	private static void stopBrewAnimation()
+	{
+		brewImageView.setVisible(false);
+		numBeveragesBeingBrewed--;
+		beverageBrewAmount.setText("x" + numBeveragesBeingBrewed);
+	}
 
-        // stop animation
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(8000),
-                        e -> stopBoxAnimation()
-                ));
+	private static void playPourAnimation()
+	{
+		System.out.println("Pouring Into Cup...");
+		pourInCupImageView.setVisible(true);
+		numBeveragesBeingPouredIntoCup++;
+		beveragePourAmount.setText("x" + numBeveragesBeingPouredIntoCup);
+	}
 
-        // Initialize orderPizzaTimeline
-        timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(8000),
-                        e -> printOrder()
-                ));
-    }
+	private static void stopPourAnimation()
+	{
+		pourInCupImageView.setVisible(false);
+		numBeveragesBeingPouredIntoCup--;
+		beveragePourAmount.setText("x" + numBeveragesBeingPouredIntoCup);
+	}
 
-    /**
-     * Orders a pizza depending on the radio button selected.
-     */
-    private void orderPizza()
-    {
-        RadioButton pizzaStore = (RadioButton) styleGroup.getSelectedToggle();
-        switch (pizzaStore.getText())
-        {
-            case "New York":
-                this.pizzaStore = new NYPizzaStore();
-                break;
-            case "Chicago":
-                this.pizzaStore = new ChicagoPizzaStore();
-                break;
-        }
+	private static void playAddCondimentsAnimation()
+	{
+		System.out.println("Adding Condiments...");
+		addCondimentsImageView.setVisible(true);
+		numBeveragesBeingCondimented++;
+		beverageCondimentsAmount.setText("x" + numBeveragesBeingCondimented);
+	}
 
-        RadioButton pizzaType = (RadioButton) typeGroup.getSelectedToggle();
-        switch (pizzaType.getText())
-        {
-            case "Cheese":
-                pizza = this.pizzaStore.orderPizza("cheese");
-                break;
-            case "Pepperoni":
-                pizza = this.pizzaStore.orderPizza("pepperoni");
-                break;
-            case "Clam":
-                pizza = this.pizzaStore.orderPizza("clam");
-                break;
-            case "Veggie":
-                pizza = this.pizzaStore.orderPizza("veggie");
-                break;
-        }
+	private static void stopAddCondimentsAnimation()
+	{
+		addCondimentsImageView.setVisible(false);
+		numBeveragesBeingCondimented--;
+		beverageCondimentsAmount.setText("x" + numBeveragesBeingCondimented);
+	}
 
-        pizza.setStyle(pizzaStore.getText());
-
-        timeline.play();
-    }
-
-    /**
-     * Outputs the order details to the command line.
-     */
-    private void printOrder()
-    {
-//        orderTextArea.appendText("\nWe ordered a " + pizza.getName() + "\n");
-//        orderTextArea.appendText(String.valueOf(pizza));
-
-        System.out.println("\nWe ordered a " + pizza.getStyle() + " " + pizza.getName());
-        System.out.println(String.valueOf(pizza));
-    }
-
-    private void showChicagoButton()
-    {
-        labelPizzaMenu.setText("--- Chicago Pizza Menu ---");
-        textCheeseDescription.setText("Plum Tomato Sauce, Mozzarella, Parmesan, Oregano");
-        textVeggieDescription.setText("Plum Tomato Sauce, Mozzarella, Parmesan, Eggplant, Spinach, Black Olives");
-        textClamDescription.setText("Plum Tomato Sauce, Mozzarella, Parmesan, Clams");
-        textPepperoniDescription.setText("Plum Tomato Sauce, Mozzarella, Parmesan, Eggplant, Spinach, Black Olives, Pepperoni");
-    }
-
-    private void showNYButton()
-    {
-        labelPizzaMenu.setText("--- New York Pizza Menu ---");
-        textCheeseDescription.setText("Marinara Sauce, Reggiano, Garlic");
-        textVeggieDescription.setText("Marinara Sauce, Reggiano, Mushrooms, Onions, Red Peppers");
-        textClamDescription.setText("Marinara Sauce, Reggiano, Fresh Clams");
-        textPepperoniDescription.setText("Marinara Sauce, Reggiano, Mushrooms, Onions, Red Peppers, Pepperoni");
-    }
-
-    private static void playPrepareAnimation()
-    {
-        System.out.println("Preparing Pizza...");
-        pizzaPrepareImageView.setVisible(true);
-        numPizzasBeingPrepared++;
-        pizzaPrepareAmount.setText("x" + numPizzasBeingPrepared);
-    }
-
-    private static void stopPrepareAnimation()
-    {
-        pizzaPrepareImageView.setVisible(false);
-        numPizzasBeingPrepared--;
-        pizzaPrepareAmount.setText("x" + numPizzasBeingPrepared);
-    }
-
-    private static void playBakeAnimation()
-    {
-        System.out.println("Baking Pizza...");
-        pizzaBakeImageView.setVisible(true);
-        numPizzasBeingBaked++;
-        pizzaBakeAmount.setText("x" + numPizzasBeingBaked);
-    }
-
-    private static void stopBakeAnimation()
-    {
-        pizzaBakeImageView.setVisible(false);
-        numPizzasBeingBaked--;
-        pizzaBakeAmount.setText("x" + numPizzasBeingBaked);
-    }
-
-    private static void playCutAnimation()
-    {
-        System.out.println("Cutting Pizza...");
-        pizzaCutImageView.setVisible(true);
-        numPizzasBeingCut++;
-        pizzaCutAmount.setText("x" + numPizzasBeingCut);
-    }
-
-    private static void stopCutAnimation()
-    {
-        pizzaCutImageView.setVisible(false);
-        numPizzasBeingCut--;
-        pizzaCutAmount.setText("x" + numPizzasBeingCut);
-    }
-
-    private static void playBoxAnimation()
-    {
-        System.out.println("Boxing Pizza...");
-        pizzaBoxImageView.setVisible(true);
-        numPizzasBeingBoxed++;
-        pizzaBoxAmount.setText("x" + numPizzasBeingBoxed);
-    }
-
-    private static void stopBoxAnimation()
-    {
-        pizzaBoxImageView.setVisible(false);
-        numPizzasBeingBoxed--;
-        pizzaBoxAmount.setText("x" + numPizzasBeingBoxed);
-    }
-
-    /**
-     * Closes the window of the program.
-     */
-    private void closeProgram()
-    {
-        window.close();
-    }
+	/**
+	 * Closes the window of the program.
+	 */
+	private void closeProgram()
+	{
+		window.close();
+	}
 }

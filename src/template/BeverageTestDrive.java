@@ -1,30 +1,19 @@
 package template;
 
-import template.beverages.Coffee;
 import template.beverages.CoffeeWithHook;
-import template.beverages.Tea;
 import template.beverages.TeaWithHook;
 
-public class BeverageTestDrive {
-	public static void main(String[] args) {
- 
-		Tea tea = new Tea();
-		Coffee coffee = new Coffee();
- 
-		System.out.println("\nMaking tea...");
-		tea.prepareRecipe();
- 
-		System.out.println("\nMaking coffee...");
-		coffee.prepareRecipe();
-
- 
+public class BeverageTestDrive
+{
+	public static void main(String[] args)
+	{
 		TeaWithHook teaHook = new TeaWithHook();
 		CoffeeWithHook coffeeHook = new CoffeeWithHook();
- 
+
 		System.out.println("\nMaking tea...");
-		teaHook.prepareRecipe();
- 
+		teaHook.prepareRecipe(true);
+
 		System.out.println("\nMaking coffee...");
-		coffeeHook.prepareRecipe();
+		coffeeHook.prepareRecipe(true);
 	}
 }
