@@ -11,12 +11,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import template.beverages.Tea;
+import template.beverages.Coffee;
 
 import java.io.File;
 
 public class Main extends Application
 {
-	private static int numBeveragesBeingBoiled = 0, numBeveragesBeingBrewed = 0, numBeveragesBeingPouredIntoCup = 0, numBeveragesBeingCondimented = 0;
+	public static int numBeveragesBeingBoiled = 0, numBeveragesBeingBrewed = 0, numBeveragesBeingPouredIntoCup = 0, numBeveragesBeingCondimented = 0;
+
+	private Tea tea = new Tea();
+	private Coffee coffee = new Coffee();
 
 	private static final Timeline timeline = new Timeline();
 
@@ -32,10 +37,10 @@ public class Main extends Application
 	private Button teaButton = new Button("Make Tea");
 	private Button coffeeButton = new Button("Make Coffee");
 
-	private static ImageView boilWaterImageView = new ImageView();
-	private static ImageView brewImageView = new ImageView();
-	private static ImageView pourInCupImageView = new ImageView();
-	private static ImageView addCondimentsImageView = new ImageView();
+	public static ImageView boilWaterImageView = new ImageView();
+	public static ImageView brewImageView = new ImageView();
+	public static ImageView pourInCupImageView = new ImageView();
+	public static ImageView addCondimentsImageView = new ImageView();
 
 	private static Image boilWaterAnimationImage = new Image(new File(imageDir + "BoilWater.gif").toURI().toString());
 	private static Image steepTeaAnimationImage = new Image(new File(imageDir + "SteepTea.gif").toURI().toString());
@@ -44,10 +49,10 @@ public class Main extends Application
 	private static Image addLemonAnimationImage = new Image(new File(imageDir + "AddLemon.gif").toURI().toString());
 	private static Image addSugarAndMilkAnimationImage = new Image(new File(imageDir + "AddSugarAndMilk.gif").toURI().toString());
 
-	private static Text beverageBoilAmount = new Text("x" + numBeveragesBeingBoiled);
-	private static Text beverageBrewAmount = new Text("x" + numBeveragesBeingBrewed);
-	private static Text beveragePourAmount = new Text("x" + numBeveragesBeingPouredIntoCup);
-	private static Text beverageCondimentsAmount = new Text("x" + numBeveragesBeingCondimented);
+	public static Text beverageBoilAmount = new Text("x" + numBeveragesBeingBoiled);
+	public static Text beverageBrewAmount = new Text("x" + numBeveragesBeingBrewed);
+	public static Text beveragePourAmount = new Text("x" + numBeveragesBeingPouredIntoCup);
+	public static Text beverageCondimentsAmount = new Text("x" + numBeveragesBeingCondimented);
 
 	public static void main(String[] args)
 	{
@@ -161,10 +166,11 @@ public class Main extends Application
 	 */
 	private void prepareTea()
 	{
+		boolean teaCondiments = false;
 		if (teaCondimentsCheckBox.isSelected())
-		{
+			teaCondiments = true;
 
-		}
+		tea.prepareRecipe(teaCondiments);
 
 		timeline.play();
 	}
@@ -174,10 +180,11 @@ public class Main extends Application
 	 */
 	private void prepareCoffee()
 	{
+		boolean coffeeCondiments = false;
 		if (coffeeCondimentsCheckBox.isSelected())
-		{
+			coffeeCondiments = true;
 
-		}
+		coffee.prepareRecipe(coffeeCondiments);
 
 		timeline.play();
 	}

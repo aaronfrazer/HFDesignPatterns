@@ -1,19 +1,20 @@
-package templatePattern.beverages;
+package template.beverages;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class TeaWithHook extends CaffeineBeverageWithHook
+public class Coffee extends CaffeineBeverage
 {
+
 	public void brew()
 	{
-		System.out.println("Steeping the tea");
+		System.out.println("Dripping Coffee through filter");
 	}
 
 	public void addCondiments()
 	{
-		System.out.println("Adding Lemon");
+		System.out.println("Adding Sugar and Milk");
 	}
 
 	public boolean customerWantsCondiments()
@@ -32,10 +33,9 @@ public class TeaWithHook extends CaffeineBeverageWithHook
 
 	private String getUserInput()
 	{
-		// get the user's response
 		String answer = null;
 
-		System.out.print("Would you like lemon with your tea (y/n)? ");
+		System.out.print("Would you like milk and sugar with your coffee (y/n)? ");
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		try

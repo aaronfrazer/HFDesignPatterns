@@ -1,9 +1,12 @@
 package template.beverages;
 
-public abstract class CaffeineBeverageWithHook
+import static template.Main.*;
+
+public abstract class CaffeineBeverage
 {
 	public final void prepareRecipe(boolean condiments)
 	{
+		System.out.println("Preparing recipe");
 		boilWater();
 		brew();
 		pourInCup();
@@ -19,7 +22,11 @@ public abstract class CaffeineBeverageWithHook
 
 	void boilWater()
 	{
-		System.out.println("Boiling water");
+		// Play boiling water animation
+		System.out.println("Boiling Water...");
+		boilWaterImageView.setVisible(true);
+		numBeveragesBeingBoiled++;
+		beverageBoilAmount.setText("x" + numBeveragesBeingBoiled);
 	}
 
 	void pourInCup()

@@ -1,14 +1,14 @@
 package template;
 
-import template.beverages.CoffeeWithHook;
-import template.beverages.TeaWithHook;
+import template.beverages.Coffee;
+import template.beverages.Tea;
 
 public class BeverageTestDrive
 {
 	public static void main(String[] args)
 	{
-		TeaWithHook teaHook = new TeaWithHook();
-		CoffeeWithHook coffeeHook = new CoffeeWithHook();
+		Tea teaHook = new Tea();
+		Coffee coffeeHook = new Coffee();
 
 		System.out.println("\nMaking tea...");
 		teaHook.prepareRecipe(true);
