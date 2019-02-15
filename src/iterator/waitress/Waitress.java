@@ -47,9 +47,7 @@ public class Waitress
 		while (iterator.hasNext())
 		{
 			MenuItem menuItem = iterator.next();
-
 			String branchTitle = menuItem.getName() + ", " + menuItem.getPrice() + " -- " + menuItem.getDescription();
-
 			makeBranch(branchTitle, menu);
 		}
 	}
@@ -98,11 +96,8 @@ public class Waitress
 			return true;
 		}
 		Iterator<MenuItem> cafeIterator = cafeMenu.createIterator();
-		if (isVegetarian(name, cafeIterator))
-		{
-			return true;
-		}
-		return false;
+
+		return isVegetarian(name, cafeIterator);
 	}
 
 	private void printVegetarianMenu(Iterator<MenuItem> iterator, TreeItem<String> menu)

@@ -5,20 +5,20 @@ import static template.Main.condimentsTimeline;
 
 public class Tea extends CaffeineBeverage
 {
-	private String beverageName = "Tea";
+    private String beverageName = "Tea";
 
-	public void brew()
-	{
-		brewTimeline.play();
-	}
+    public void brew()
+    {
+        brewTimeline.play();
+    }
 
-	public void addCondiments()
-	{
-		condimentsTimeline.play();
-	}
+    public void addCondiments()
+    {
+        condimentsTimeline.play();
+    }
 
-	public String toString()
-	{
-		return beverageName;
-	}
+    public String toString()
+    {
+        return beverageName;
+    }
 }
